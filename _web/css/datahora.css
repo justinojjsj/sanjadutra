@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@100;300;500&family=DM+Mono:wght@300;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+font-family: 'Azeret Mono', monospace;
+font-family: 'DM Mono', monospace;
+*/
+
+#telaSmart {
+    font-family: 'DM Mono', monospace;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+    
+    user-select: none;
+    -padding: 1rem;
+    border-radius: 20px;
+    background: #111;
+    color: cyan;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#relogioSmart {   
+    user-select: none;
+    -margin-top: 1rem;
+}
+
+#hSmart, #mSmart {
+    font-size: 2rem;
+}
+
+#sSmart {
+    font-size: 2rem;
+}
+
+#dataSmart {
+    margin-left: 25px;
+    user-select: none;
+    color: magenta;
+    display: inline-block;
+    font-size: 2rem;
+}
+
+#semana {
+    color: greenyellow;
+}
+
+@keyframes piscar {
+    to {
+        opacity: 1;
+    }
+    from {
+        opacity: 0;
+    }
+}
+
+.doisPontos {
+    animation: piscar 1s infinite;
+}
+
+.doisPontos:last-child {
+    font-size: 0.5rem;
+}

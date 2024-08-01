@@ -1,0 +1,108 @@
+body{
+	background-image: url("../img/pattern.png"),url("../img/saojose.jpg");
+}
+
+.fundo-cinza{
+	background-color:rgba(242, 246, 248, 0.932);
+}
+
+.borda{
+    border: 2px;
+	border-style: solid;
+	border-color: #fa0303e4;
+	border-radius: 3px;    
+}
+
+.borda2{
+    border: 2px;
+	border-style: solid;
+	border-color: #c8c7c7;
+	border-radius: 3px;    
+}
+
+.atualizacao{
+	text-align: center;
+}
+
+.inpe{
+    text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+    padding: 10px;
+    font-size: 20px;
+	font-weight: 800;
+}
+
+.inpe-titulo{
+    text-align: center;
+	display: flex;
+	flex-direction: column !important;
+	justify-content: center;
+	align-items: center;
+    padding: 10px;
+    font-size: 20px;
+	font-weight: 800;
+}
+
+#chuva{
+    background-color: rgb(205, 225, 234);
+}
+
+#gota{
+    height: 25px;
+	width: 25px;
+    background-image: url("../img/drop.png");
+    background-size: 25px 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#temperatura{
+    background-color: rgb(253, 207, 215);
+}
+
+#frio{
+    height: 30px;
+	width: 30px;
+    background-image: url("../img/cold.png");
+    background-size: 30px 30px;
+	background-position: center;
+	background-repeat: no-repeat;  
+}
+
+#quente{
+    height: 30px;
+	width: 30px;
+    background-image: url("../img/hot.png");
+    background-size: 30px 30px;
+	background-position: center;
+	background-repeat: no-repeat;  
+}
+
+#induv{
+    background-color: aliceblue;
+}
+
+#sol{
+    background-color: rgb(229, 227, 159);
+}
+
+#sunrise{
+    height: 35px;
+	width: 35px;
+    background-image: url("../img/sunrise.png");
+    background-size: 35px 35px;
+	background-position: center;
+	background-repeat: no-repeat;  
+}
+
+#sunset{
+    height: 35px;
+	width: 35px;
+    background-image: url("../img/sunset.png");
+    background-size: 35px 35px;
+	background-position: center;
+	background-repeat: no-repeat;  
+}
