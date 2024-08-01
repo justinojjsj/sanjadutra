@@ -1,0 +1,19 @@
+### SANJADUTRA ###
+
+1. Capturar dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script nos trechos:
+
+    Início: Km 128 (Caçapava)
+    Fim: km 162 (Jacareí)
+
+2. Classificar dados corretamente
+
+    Local
+    Início
+    Fim
+    Data
+    Hora
+    Condição de tráfego
+
+3. Manipular dados classificados gerando gráficos de horários de fluxos
+
+    -Exibir em gráficos
