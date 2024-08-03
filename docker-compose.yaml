@@ -6,15 +6,15 @@ services:
     build:
       context: .
       dockerfile: dockerfile-php-apache
-    container_name: sanjahoje_php_apache
+    container_name: sanjadutra_php_apache
     volumes:
       - ./_web:/var/www/html
       - ./sites-available/:/etc/apache2/sites-available/
     ports:
-      - 83:80
+      - 88:80
     networks:
       rede:
-        ipv4_address: 170.14.0.2
+        ipv4_address: 170.17.0.2
     working_dir: /var/www/html
     environment:
       PHP_ERROR_REPORTING: E_ALL & ~E_NOTICE
@@ -34,14 +34,15 @@ services:
     build:
       context: .
       dockerfile: dockerfile-db
-    container_name: sanjahoje_db
+    container_name: sanjadutra_db
+    restart: always
     volumes:
       - dbdata:/var/lib/mysql
     ports:
-      - 3303:3306
+      - 3307:3306
     networks:
       rede:
-        ipv4_address: 170.14.0.3
+        ipv4_address: 170.17.0.3
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
       MYSQL_DATABASE: db_testes
@@ -51,12 +52,12 @@ services:
       
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: sanjahoje_phpmyadmin
+    container_name: sanjadutra_phpmyadmin
     ports:
-      - 8083:80
+      - 8087:80
     networks:
       rede:
-        ipv4_address: 170.14.0.4
+        ipv4_address: 170.17.0.4
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: my-secret-pw
@@ -67,45 +68,18 @@ services:
     depends_on:
       - db
 
-  python-inpe:
-    build:
-      context: .
-      dockerfile: dockerfile-python-inpe
-    container_name: sanjahoje_python_inpe
-    volumes:
-      - ./_app-inpe:/app 
-    tty: true
-    networks:
-      rede:
-        ipv4_address: 170.14.0.5
-    environment:
-      TZ: "America/Sao_Paulo"
-
-  python-noticias:
-    build:
-      context: .
-      dockerfile: dockerfile-python-noticias
-    container_name: sanjahoje_python_noticias
-    volumes:
-      - ./_app-noticias:/app 
-    tty: true
-    networks:
-      rede:
-        ipv4_address: 170.14.0.6
-    environment:
-      TZ: "America/Sao_Paulo"
-
   python-ccr:
     build:
       context: .
       dockerfile: dockerfile-python-ccr
-    container_name: sanjahoje_python_ccr
+    container_name: sanjadutra_python_ccr
+    restart: always
     volumes:
       - ./_app-ccr:/app 
     tty: true
     networks:
       rede:
-        ipv4_address: 170.14.0.7
+        ipv4_address: 170.17.0.5
     environment:
       TZ: "America/Sao_Paulo"
 
@@ -117,5 +91,5 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 170.14.0.0/24
-          gateway: 170.14.0.1
+        - subnet: 170.17.0.0/24
+          gateway: 170.17.0.1

@@ -1,5 +1,5 @@
 <?php
-	$servidor = "170.14.0.3:3306";
+	$servidor = "170.17.0.3:3306";
 	$usuario = "root";
 	$senha = "my-secret-pw";
 	$dbname = "db_ccr";
