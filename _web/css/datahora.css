@@ -23,7 +23,7 @@ font-family: 'DM Mono', monospace;
     user-select: none;
     -padding: 1rem;
     border-radius: 20px;
-    background: #111;
+    -background: #111;
     color: cyan;
     text-align: center;
     font-size: 2rem;

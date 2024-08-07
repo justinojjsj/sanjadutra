@@ -36,17 +36,20 @@ Para funcionar os sistemas é necessário:
         Clicar com o botão direito no arquivo e clicar em compose-up
 
 Executar os containers e configurar o cron:
-    docker exec -it sanjahoje_python_ccr bash
+    docker exec -it sanjadutra_python_ccr bash
     crontab -e
     #Selecionar opção 1 (vai selecionar o editor de texto NANO)
     #Copiar a seguinte linha ao final do arquivo (remova o espaço antes e depois)
     0,15,30,45 * * * * /app/exec.sh
     #Ctrl+o para salvar arquivo, Ctrol+x para sair do arquivo:
+    #Digitar no terminal
+    chmod u+x /app/exec.sh
 
 Após estar com os containers em execução acessar através do navegador:
 
 Phpmyadmin:
     127.0.0.1:8087 (usuário: root senha: my-secret-pw)
+    Criar um banco de dados com o nome: db_ccr
     Importar arquivo db.sql (mais recente) que está na pasta _db
 
 Site:

@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="refresh" content="180">
-        <title>Sanja Hoje</title>
+        <title>SanjaDutra</title>
         <link rel="icon" type="image/png" href="./img/favicon.ico"/>
         <?php include "./header.php"; ?>
     </head>
@@ -15,16 +15,26 @@
         <div class="top">
             <div class="collapse" id="navbarToggleExternalContent">
                 <div class="bg-dark p-4">
-                    <h5 class="text-white h4">Sanja Hoje</h5>
-                    <span class="text-muted">Sistema de Micro Serviços de Mobilidade para São José dos Campos - Projeto Integrador III - UNIVESP</span>
-                </div>
+                    <h5 class="text-white h4">SanjaDutra</h5>
+                    <span class="text-muted">Sistema de Micro Serviços de Análise de Dados do km 128 a 162 da rodovia Presidente Dutra trecho de São José dos Campos - Projeto Integrador IV - UNIVESP</span>
+                </div>                
             </div>
+            
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+                    <div id='telaSmart'>
+                        <div id='relogioSmart'>                    
+                            <span id='hSmart'></span><span class='doisPontos'>:</span><span id='mSmart'></span><span class='doisPontos'>:</span><span id='sSmart'></span>
+                        </div>
+                        <div id='dataSmart'>
+                            <span id='semana'></span>
+                            <span id='data'></span>
+                        </div>                       
+                    </div>
+                    <br>                    
                 </div>
             </nav>
         </div>
@@ -33,19 +43,10 @@
             <br>                
             <div class="alert alert-info text-center rounded-pill" role="alert">
                 <h2>
-                São José dos Campos - SP
+                Análise do trecho da rodovia em São José dos Campos - SP
                 </h2>
             </div>
-            <div id='telaSmart'>
-                <div id='relogioSmart'>                    
-                    <span id='hSmart'></span><span class='doisPontos'>:</span><span id='mSmart'></span><span class='doisPontos'>:</span><span id='sSmart'></span>
-                </div>
-                <div id='dataSmart'>
-                    <span id='semana'></span>
-                    <span id='data'></span>
-                </div>                       
-            </div>
-            <br>
+            
             <div class="row row-cols-1 row-cols-md-3 g-4 ">
                 
                 <div class="col">
