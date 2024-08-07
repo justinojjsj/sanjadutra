@@ -5,7 +5,7 @@ from datetime import date
 from datetime import datetime
 import mysql.connector
 import time
-db_connection = mysql.connector.connect(host='170.14.0.3', user='root', password='my-secret-pw', database='db_ccr')
+db_connection = mysql.connector.connect(host='170.17.0.3', user='root', password='my-secret-pw', database='db_ccr')
 
 #Setando opções do driver firefox
 f_options=Options()
