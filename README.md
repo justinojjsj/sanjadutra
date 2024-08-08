@@ -25,7 +25,8 @@ Para funcionar os sistemas é necessário:
 1. Instalar o docker desktop
 2. Fazer um clone no repositório [sanjadutra](https://github.com/justinojjsj/sanjadutra.git)
 3. Executar os containers docker. Existem duas formas:
-    -Método 1: 
+
+-Método 1: 
         Utilizando o power shell (windows) ou terminal (linux) acessar o diretório onde está salvo o arquivo docker-compose.yaml
         Digitar o seguinte comando: docker-compose up 
     -Método 2:
