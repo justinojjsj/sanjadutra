@@ -1,0 +1,10 @@
+Banco db_ccr
+
+    Tabela dados(id, titulo, texto, data_coleta, hora_coleta)
+        - Usada para armazenar as informações de tráfego de maneira crua, enviada pelo python.
+
+    Tabela locais(id, cidade, km_ini, km_fim)
+        - Armazena onde inicia e termina os km das cidades, de acordo com a ccr (informação estática retirada do Google Maps)
+
+    Tabela classificados(id, km_ini, km_fim, pista, tráfego, data_coleta, hora_coleta)
+        - Armazena os dados classificados, retirados da tabela dados
