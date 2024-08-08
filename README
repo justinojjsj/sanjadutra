@@ -26,7 +26,7 @@ Para funcionar os sistemas é necessário:
 -Fazer um clone no repositório [sanjadutra](https://github.com/justinojjsj/sanjadutra.git)
 -Executar os containers docker. Existem duas formas:
     -Método 1: 
-        Utilizando o power shell acessar o diretório onde está salvo o arquivo docker-compose.yaml
+        Utilizando o power shell (windows) ou terminal (linux) acessar o diretório onde está salvo o arquivo docker-compose.yaml
         Digitar o seguinte comando: docker-compose up 
     -Método 2:
         Instalar o VSCODE
