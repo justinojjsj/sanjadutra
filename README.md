@@ -1,4 +1,6 @@
-## SANJADUTRA
+# SANJADUTRA
+
+## DESCRIÇÃO DO DESENVOLVIMENTO
 
 1. Capturar dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script nos trechos:
 
@@ -28,7 +30,7 @@ Para funcionar os sistemas é necessário:
 - Método 1: 
     - Utilizando o power shell (windows) ou terminal (linux) acessar o diretório onde está salvo o arquivo docker-compose.yaml
     - Digitar o seguinte comando: 
-    # docker-compose up 
+    ```docker-compose up```
 -Método 2:
     - Instalar o VSCODE
     - Instalar o plugin docker
