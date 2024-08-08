@@ -31,18 +31,22 @@ Para funcionar os sistemas é necessário:
     - Utilizando o power shell (windows) ou terminal (linux) acessar o diretório onde está salvo o arquivo docker-compose.yaml
     - Digitar o seguinte comando: 
     ```
-    docker-compose up
+    docker-compose up -d
     ```
 - Método 2:
     - Instalar o VSCODE
     - Instalar o plugin docker
     - Abrir o projeto sanjahoje no VSCODE
     - Encontrar o arquivo docker-compose.yaml
-    - Clicar com o botão direito no arquivo e clicar em compose-up
+    - Clicar com o botão direito no arquivo e clicar em [compose-up]
 
-Executar os containers e configurar o cron:
+4. Executar os containers e configurar o cron:
+    ```
     docker exec -it sanjadutra_python_ccr bash
+    ```
+    ```
     crontab -e
+    ```
     #Selecionar opção 1 (vai selecionar o editor de texto NANO)
     #Copiar a seguinte linha ao final do arquivo (remova o espaço antes e depois)
     0,15,30,45 * * * * /app/exec.sh
