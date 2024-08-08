@@ -1160,3 +1160,178 @@ console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1
 console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
 1723131922739	Marionette	INFO	Stopped listening on port 41531
 Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1723138202853	geckodriver	INFO	Listening on 127.0.0.1:34623
+1723138203415	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "45717" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile85W51X"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723138203895	Marionette	INFO	Marionette enabled
+1723138204021	Marionette	INFO	Listening on port 41643
+WebDriver BiDi listening on ws://127.0.0.1:45717
+Read port: 41643
+1723138204360	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:45717/devtools/browser/0ebbcaf0-2c6e-44a0-ab03-9b23c395e524
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723138220692	Marionette	INFO	Stopped listening on port 41643
+console.error: (new Error("Data is not ready.", "resource://gre/modules/JSONFile.sys.mjs", 184))
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1723139101473	geckodriver	INFO	Listening on 127.0.0.1:36673
+1723139101534	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "45373" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileSKI795"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723139101986	Marionette	INFO	Marionette enabled
+1723139102167	Marionette	INFO	Listening on port 42613
+WebDriver BiDi listening on ws://127.0.0.1:45373
+Read port: 42613
+1723139102510	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:45373/devtools/browser/b3d54c18-d340-42de-b0c7-a997d52eb37e
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723139120320	Marionette	INFO	Stopped listening on port 42613
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1723140002200	geckodriver	INFO	Listening on 127.0.0.1:35817
+1723140002244	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "52789" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVoAOuG"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723140002670	Marionette	INFO	Marionette enabled
+1723140002788	Marionette	INFO	Listening on port 44563
+WebDriver BiDi listening on ws://127.0.0.1:52789
+Read port: 44563
+1723140003102	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:52789/devtools/browser/e3f28dcf-112a-4477-9c36-2a03d0e735ea
+1723140005322	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+1723140032677	addons.xpi	ERROR	System addon update list error SyntaxError: The URI is malformed.
+console.error: (new Error("Polling for changes failed: NetworkError: Network request failed.", "resource://services-settings/remote-settings.sys.mjs", 324))
+1723140901836	geckodriver	INFO	Listening on 127.0.0.1:33313
+1723140901904	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "58187" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileDbp4sh"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723140902440	Marionette	INFO	Marionette enabled
+1723140902603	Marionette	INFO	Listening on port 46751
+WebDriver BiDi listening on ws://127.0.0.1:58187
+Read port: 46751
+1723140903021	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:58187/devtools/browser/8708a5c8-d6f3-4f20-9c4b-6215fea2d99c
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723140921570	Marionette	INFO	Stopped listening on port 46751
+1723141801456	geckodriver	INFO	Listening on 127.0.0.1:34317
+1723141801513	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "34053" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileixmaht"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723141801930	Marionette	INFO	Marionette enabled
+1723141802054	Marionette	INFO	Listening on port 43157
+WebDriver BiDi listening on ws://127.0.0.1:34053
+Read port: 43157
+1723141802383	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:34053/devtools/browser/b18ff4ca-699a-4d14-aa44-9f6144084982
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723141819417	Marionette	INFO	Stopped listening on port 43157
+1723142702900	geckodriver	INFO	Listening on 127.0.0.1:43669
+1723142702965	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "52235" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebf2qKe"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723142703395	Marionette	INFO	Marionette enabled
+1723142703512	Marionette	INFO	Listening on port 32829
+WebDriver BiDi listening on ws://127.0.0.1:52235
+Read port: 32829
+1723142703852	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:52235/devtools/browser/925c6b5b-a7a0-4fe1-aa9a-f8fe2827488d
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723142719075	Marionette	INFO	Stopped listening on port 32829
+1723143601880	geckodriver	INFO	Listening on 127.0.0.1:47491
+1723143601942	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "32823" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFlV4yP"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723143602398	Marionette	INFO	Marionette enabled
+1723143602517	Marionette	INFO	Listening on port 45057
+WebDriver BiDi listening on ws://127.0.0.1:32823
+Read port: 45057
+1723143602638	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:32823/devtools/browser/cfa4da20-8d94-4022-85ea-36eb17902692
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723143619798	Marionette	INFO	Stopped listening on port 45057
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1723144502511	geckodriver	INFO	Listening on 127.0.0.1:36119
+1723144502594	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "46519" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile17Oaqm"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: libpci missing
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: No GPUs detected via PCI
+
+1723144503315	Marionette	INFO	Marionette enabled
+1723144503492	Marionette	INFO	Listening on port 35825
+WebDriver BiDi listening on ws://127.0.0.1:46519
+Read port: 35825
+1723144504082	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:46519/devtools/browser/98e6e87a-89ad-4cb6-aaaf-662c0b305823
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1723144521621	Marionette	INFO	Stopped listening on port 35825

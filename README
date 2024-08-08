@@ -1,4 +1,4 @@
-### SANJADUTRA ###
+## SANJADUTRA
 
 1. Capturar dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script nos trechos:
 
@@ -18,13 +18,13 @@
 
     -Exibir em gráficos
 
-### COMO CONFIGURAR OS SISTEMAS ###
+## COMO CONFIGURAR OS SISTEMAS
 
 Para funcionar os sistemas é necessário:
 
--Instalar o docker desktop
--Fazer um clone no repositório [sanjadutra](https://github.com/justinojjsj/sanjadutra.git)
--Executar os containers docker. Existem duas formas:
+1. Instalar o docker desktop
+2. Fazer um clone no repositório [sanjadutra](https://github.com/justinojjsj/sanjadutra.git)
+3. Executar os containers docker. Existem duas formas:
     -Método 1: 
         Utilizando o power shell (windows) ou terminal (linux) acessar o diretório onde está salvo o arquivo docker-compose.yaml
         Digitar o seguinte comando: docker-compose up 
