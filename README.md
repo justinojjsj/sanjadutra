@@ -40,27 +40,33 @@ Para funcionar os sistemas é necessário:
     - Encontrar o arquivo docker-compose.yaml
     - Clicar com o botão direito no arquivo e clicar em [compose-up]
 
-4. Executar os containers e configurar o cron:
+4. Após estar com os containers em execução acessar o PhpmyAdmin através do navegador (usuário: root senha: my-secret-pw):
+    ```
+    127.0.0.1:8087 
+    ```
+    - Criar um banco de dados com o nome: db_ccr
+    - Importar arquivo db.sql (mais recente) que está na pasta _db
+
+5. Acessar o site do sistema:
+    ```
+    127.0.0.1:88
+    ```
+    - A cada 15 minutos os dados do site são atualizados automaticamente (aguarde esse tempo para ver os dados carregados na página)
+
+6. Executar os containers e configurar o cron (essa passo não é necessário, a não ser que o sistema não esteja sendo alimentado automaticamente):
     ```
     docker exec -it sanjadutra_python_ccr bash
     ```
     ```
     crontab -e
     ```
-    #Selecionar opção 1 (vai selecionar o editor de texto NANO)
-    #Copiar a seguinte linha ao final do arquivo (remova o espaço antes e depois)
+    - Selecionar opção 1 (vai selecionar o editor de texto NANO)
+    - Copiar a seguinte linha ao final do arquivo (remova o espaço antes e depois)
+    ```
     0,15,30,45 * * * * /app/exec.sh
-    #Ctrl+o para salvar arquivo, Ctrol+x para sair do arquivo:
-    #Digitar no terminal
+    ```
+    - Ctrl+o para salvar arquivo, Ctrol+x para sair do arquivo:
+    - Digitar no terminal
+    ```
     chmod u+x /app/exec.sh
-
-Após estar com os containers em execução acessar através do navegador:
-
-Phpmyadmin:
-    127.0.0.1:8087 (usuário: root senha: my-secret-pw)
-    Criar um banco de dados com o nome: db_ccr
-    Importar arquivo db.sql (mais recente) que está na pasta _db
-
-Site:
-    127.0.0.1:88
-    A cada 15 minutos os dados do site são atualizados automaticamente (aguarde esse tempo para ver os dados carregados na página)
+    ```
