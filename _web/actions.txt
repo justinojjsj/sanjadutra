@@ -1,0 +1,12 @@
+Felipe alimentar a tabela [locais] com o trecho 128 a 162
+Criar uma página php, html, mysql com uma tabela com os dados do Banco usando o docker
+Subir dados na sua feature do git
+
+TABELA:
+
+CREATE TABLE `locais` (
+  `id` int(11) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `km_ini` varchar(3) NOT NULL,
+  `km_fim` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Armazena onde inicia e termina os km das cidades';
