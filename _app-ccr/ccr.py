@@ -36,42 +36,50 @@ data = date.today()
 hora = datetime.now()
 hora = hora.strftime('%H:%M:%S')
 
-#imprime o conteudo de cada notícias de tráfego separadamente
-while(i < tamanho):
-    #Recebimento dos dados a serem colocados no banco (exceto num_noticias, esse é apenas visual)
-    num_noticia = str(int((i/4)+1))
-    titulo_t = conteudo[titulo]
-    texto_t = conteudo[texto]
-    
-    #Limpando texto para ficar somente o conteúdo necessário
-    texto_t = texto_t.split()
-    texto_limpo= ''
-    val = 1
-    j=0
-
-    while(val == 1):
-        if(texto_t[j] != 'Obs:'):
-            texto_limpo += texto_t[j] + ' '
-        else:
-            val=0
-        j=j+1
-            
-    #Impressão dos dados (meramente visual)    
-    print("Notícia: "+num_noticia)
-    print('Título: '+titulo_t)
-    print('Texto: '+texto_limpo)
-    print('Data da coleta: '+str(data))
-    print('Hora da coleta: '+str(hora))
-    print(' ')
-    titulo = titulo + 4
-    texto = texto + 4
-    
-    sql = f"INSERT INTO dados (titulo, texto, data_coleta, hora_coleta) VALUES ('{titulo_t}','{texto_limpo}','{data}','{hora}')"
+#Condicional criada para capturar dados dos momentos em que não há trânsito
+if(tamanho==1):
+    #print(conteudo[0])
+    sql = f"INSERT INTO dados (titulo, texto, data_coleta, hora_coleta) VALUES ('Tráfego livre','{conteudo[0]}','{data}','{hora}')"
     cursor = db_connection.cursor()
     cursor.execute(sql)
-    cursor.close()    
-    
-    i = i+4
+    cursor.close() 
+else:
+    #imprime o conteudo de cada notícias de tráfego separadamente
+    while(i < tamanho):
+        #Recebimento dos dados a serem colocados no banco (exceto num_noticias, esse é apenas visual)
+        num_noticia = str(int((i/4)+1))
+        titulo_t = conteudo[titulo]
+        texto_t = conteudo[texto]
+        
+        #Limpando texto para ficar somente o conteúdo necessário
+        texto_t = texto_t.split()
+        texto_limpo= ''
+        val = 1
+        j=0
+
+        while(val == 1):
+            if(texto_t[j] != 'Obs:'):
+                texto_limpo += texto_t[j] + ' '
+            else:
+                val=0
+            j=j+1
+                
+        #Impressão dos dados (meramente visual)    
+        print("Notícia: "+num_noticia)
+        print('Título: '+titulo_t)
+        print('Texto: '+texto_limpo)
+        print('Data da coleta: '+str(data))
+        print('Hora da coleta: '+str(hora))
+        print(' ')
+        titulo = titulo + 4
+        texto = texto + 4
+        
+        sql = f"INSERT INTO dados (titulo, texto, data_coleta, hora_coleta) VALUES ('{titulo_t}','{texto_limpo}','{data}','{hora}')"
+        cursor = db_connection.cursor()
+        cursor.execute(sql)
+        cursor.close()    
+        
+        i = i+4
 
 db_connection.commit()
 db_connection.close()
