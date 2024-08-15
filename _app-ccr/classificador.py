@@ -50,39 +50,59 @@ else:
     #imprime o conteudo de cada notícia de tráfego separadamente
     while(i < tamanho):
         #Recebimento dos dados a serem colocados no banco (exceto num_noticias, esse é apenas visual)
-        num_noticia = str(int((i/4)+1))
+        #num_noticia = str(int((i/4)+1))
         titulo_t = conteudo[titulo]
         texto_t = conteudo[texto]
         
-        #Limpando texto para ficar somente o conteúdo necessário
-        texto_t = texto_t.split()
-        texto_limpo= ''
-        val = 1
-        j=0
-
-        while(val == 1):
-            if(texto_t[j] != 'Obs:'):
-                texto_limpo += texto_t[j] + ' '
-            else:
-                val=0
-            j=j+1
+        #Obtendo somente a kilometragem
+        titulo_t = titulo_t.split()
+        km_ini = titulo_t[2]
+        km_fim = titulo_t[5]
+        #print(titulo_t)
                 
+        #Limpando texto para ficar somente tráfego e a pista
+        texto_t = texto_t.split()
+        trafego = texto_t[9]
+        pista = texto_t[12]
+        pista = pista.rstrip(".") #Remove ponto ao final da palavra
+
+        #Obtendo dados do motivo do tráfego
+        #print(texto_t)
+        tamanho_texto = len(texto_t)
+        cont=0
+        motivo=' '
+
+        while(cont < tamanho_texto):
+            if(texto_t[cont] == 'obras' or texto_t[cont] == 'obra' or texto_t[cont] == 'Obra' or texto_t[cont] == 'acidente'):
+                motivo = texto_t[cont]
+            cont=cont+1
+            
+        #Caso haja algum motivo que não tenha sido previsto, registrar conteúdo inteiro para depois aprimorar    
+        if(motivo == ' '):
+            motivo = ' '.join(texto_t[13:tamanho_texto])
+       
+        #print('Tamanho texto: '+str(tamanho_texto)+' Contador: '+str(cont)+' Motivo: '+motivo)
+        
+                        
         #Impressão dos dados (meramente visual)    
-        print("Notícia: "+num_noticia)
-        print('Título: '+titulo_t)
-        print('Texto: '+texto_limpo)
+        #print("Notícia: "+num_noticia)
+        #print('Título: '+titulo_t)
+        print('Km inicial: '+km_ini)
+        print('Km fim: '+km_fim)
+        #print('Texto: '+texto_limpo)
+        print('Tráfego: '+trafego)
+        print('Pista: '+pista)
+        print('Motivo: '+motivo)
         print('Data da coleta: '+str(data))
         print('Hora da coleta: '+str(hora))
         print(' ')
         titulo = titulo + 4
         texto = texto + 4
-
-        #LIMPAR CONTEÚDO PARA SALVAR NO BANCO JÁ CLASSIFICADO
         
-        #sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{data}','{hora}')"
-        #cursor = db_connection.cursor()
-        #cursor.execute(sql)
-        #cursor.close()    
+        sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{motivo}','{data}','{hora}')"
+        cursor = db_connection.cursor()
+        cursor.execute(sql)
+        cursor.close()    
         
         i = i+4
 

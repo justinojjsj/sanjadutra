@@ -2,12 +2,12 @@
 
 ## ETAPA DO DESENVOLVIMENTO
 
-1. Capturando dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script [classificador.py] nos trechos:
+1. <CONCLUÍDO> Capturando dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script [classificador.py] nos trechos:
 
     Início: Km 128 (Caçapava)
     Fim: km 162 (Jacareí)
 
-2. Limpando os dados de forma que fique:
+2. <CONCLUÍDO> Limpando os dados de forma que fique:
 
    km_ini
    km_fim
