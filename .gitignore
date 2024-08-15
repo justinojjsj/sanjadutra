@@ -1,1 +1,2 @@
-*.log
+./_app-ccr/geckodriver.log
+./_app-ccr/hora_executada.log
