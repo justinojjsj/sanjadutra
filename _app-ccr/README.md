@@ -19,4 +19,4 @@
 
 3. Próximo passo: Manipular dados classificados gerando gráficos de horários de fluxos
 
-    -Exibir em gráficos
+    - Exibir em gráficos
