@@ -9,12 +9,13 @@
 
 2. <CONCLUÍDO> Limpando os dados de forma que fique:
 
-   km_ini
-   km_fim
-   pista
-   trafego
-   data_coleta
-   hora_coleta
+   - km_ini
+   - km_fim
+   - pista
+   - trafego
+   - cidade
+   - data_coleta
+   - hora_coleta
 
 3. Próximo passo: Manipular dados classificados gerando gráficos de horários de fluxos
 
