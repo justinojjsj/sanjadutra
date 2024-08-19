@@ -70,49 +70,8 @@ else:
         #print(texto_t)
         tamanho_texto = len(texto_t)
         cont=0
-        motivo=' '
-        cidade=[]
-        del_cidade=0 #Delimitador do nome da cidade
-
-        while(cont < tamanho_texto):
-            if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra'):
-                motivo = 'obra'
-            elif(texto_t[cont] == 'acidente' or texto_t[cont] == 'acidente.'):
-                motivo = 'acidente'
-            
-            #Capturar a cidade que está a ocorrência (cidade com uma palavra, duas palavras: São Paulo, quatro palavras: São José dos Campos e três palavras: Serra das Araras)
-            if(texto_t[cont] == 'Em' and del_cidade==0):
-                cidade = texto_t[cont+1]
-                
-                #Se a próxima palavra for km supoẽ-se que o motivo é quantidade de veículos na pista, pois a ccr só informa o km inicial ou final
-                if(texto_t[cont+2] == 'km'):
-                    motivo = 'qtde_veiculos'
-                
-                if(texto_t[cont+1] == 'São' and texto_t[cont+2] == 'Paulo,'):
-                    cidade = texto_t[cont+1]+' '+texto_t[cont+2]
-                    del_cidade=1
-                    if(texto_t[cont+3] == 'km'):
-                        motivo = 'qtde_veiculos'
-                elif(texto_t[cont+1] == 'São' and texto_t[cont+2] != 'Paulo,'):
-                    cidade = texto_t[cont+1]+' '+texto_t[cont+2]+' '+texto_t[cont+3]+' '+texto_t[cont+4]
-                    del_cidade=1
-                    if(texto_t[cont+5] == 'km'):
-                        motivo = 'qtde_veiculos'
-            elif(texto_t[cont] == 'Na' and del_cidade==0):
-                cidade = texto_t[cont+1]+' '+texto_t[cont+2]+' '+texto_t[cont+3]
-                del_cidade=1
-                if(texto_t[cont+4] == 'km'):
-                    motivo = 'qtde_veiculos'
-                
-            cont=cont+1
-        cidade = cidade.rstrip(",") #Remove vírgula ao final da palavra
-        cidade = cidade.rstrip(".") 
-            
-        #Caso haja algum motivo que não tenha sido previsto, registrar conteúdo inteiro para depois aprimorar    
-        if(motivo == ' '):
-            motivo = ' '.join(texto_t[13:tamanho_texto])
-            
-        motivo = motivo.rstrip(".")
+        
+        motivo = ' '.join(texto_t[13:tamanho_texto])
        
         #print('Tamanho texto: '+str(tamanho_texto)+' Contador: '+str(cont)+' Motivo: '+motivo)
         
@@ -126,14 +85,13 @@ else:
         print('Tráfego: '+trafego)
         print('Pista: '+pista)
         print('Motivo: '+motivo)
-        print('Cidade: '+cidade)
         print('Data da coleta: '+str(data))
         print('Hora da coleta: '+str(hora))
         print(' ')
         titulo = titulo + 4
         texto = texto + 4
         
-        sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{motivo}','{cidade}','{data}','{hora}')"
+        sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{motivo}','{data}','{hora}')"
         cursor = db_connection.cursor()
         cursor.execute(sql)
         cursor.close()    
