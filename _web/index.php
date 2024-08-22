@@ -98,8 +98,29 @@
                             </small>
                         </div>
                     </div>
-                </div>                    
-            </div>               
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body "> 
+                            <?php include "./graf_fluxo_sjc.php"; ?>
+                        </div>
+                        <div class="card-footer" style="height: 9rem;">
+                            <h5 class="card-title">Gráfico de Linhas</h5>
+                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Última atualização: 
+                                <?php        
+                                    echo $hora_coleta;
+                                    echo ' de ';
+                                    echo $data_coleta;                     
+                                ?>                            
+                            </small>
+                        </div>
+                    </div>
+                </div>                     
+            </div>  
+                         
         </div>
         <div class="footer">
             </br>
