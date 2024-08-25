@@ -41,6 +41,10 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Hora', 'Fluxo de Veículos'],
+
+
+
+          
           ['05:00 - 06:00', 5],
           ['06:00 - 07:00', 5],
           ['07:00 - 08:00', 4],
