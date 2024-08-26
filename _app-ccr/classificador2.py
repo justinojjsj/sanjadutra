@@ -41,11 +41,11 @@ hora = hora.strftime('%H:%M:%S')
 
 #Condicional criada para capturar dados dos momentos em que não há trânsito
 if(tamanho==1):
-    #print(conteudo[0])
-    sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, data_coleta, hora_coleta) VALUES ('128','162','total','livre','{data}','{hora}')"
-    cursor = db_connection.cursor()
-    cursor.execute(sql)
-    cursor.close() 
+    print(conteudo[0])
+    # sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, data_coleta, hora_coleta) VALUES ('128','162','total','livre','{data}','{hora}')"
+    # cursor = db_connection.cursor()
+    # cursor.execute(sql)
+    # cursor.close() 
 else:
     #imprime o conteudo de cada notícia de tráfego separadamente
     while(i < tamanho):
@@ -91,15 +91,15 @@ else:
         titulo = titulo + 4
         texto = texto + 4
         
-        sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{motivo}','{data}','{hora}')"
-        cursor = db_connection.cursor()
-        cursor.execute(sql)
-        cursor.close()    
+#         sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, data_coleta, hora_coleta) VALUES ('{km_ini}','{km_fim}','{pista}','{trafego}','{motivo}','{data}','{hora}')"
+#         cursor = db_connection.cursor()
+#         cursor.execute(sql)
+#         cursor.close()    
         
         i = i+4
 
-db_connection.commit()
-db_connection.close()
+# db_connection.commit()
+# db_connection.close()
 
 #Pegar somente as últimas notícias baseado na hora mais recente
 #Pega a última hora do banco, depois pega todas as notícias que rodaram aquela hora
