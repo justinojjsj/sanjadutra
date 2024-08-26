@@ -45,6 +45,8 @@
     // }
     // ?>
 
+
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -65,7 +67,7 @@
 
           while($dados = mysqli_fetch_assoc($result)){  
             if($dados['trafego'] == 'Intenso'){
-              echo '5 - ';
+              #echo '5 - ';
               #echo $dados['hora_coleta'];
               #echo '<br>';
               $intensidade[] = 5;
@@ -78,14 +80,12 @@
             $hora[] = $dados['hora_coleta'];         
           }
 
-          $chaves = array_keys($intensidade);    
-          foreach($chaves as $i){?>
-          ['<?php echo $hora[$i];?>','<?php echo $intensidade[$i];?>'],
-          ['<?php echo 'hora';?>',<?php echo '5';?>]
-          <?php 
-          } ?>
-
+          $chaves = array_keys($intensidade); 
           
+          foreach($chaves as $i){?>          
+            ['<?php echo $hora[$i];?>',<?php echo $intensidade[$i];?>],            
+            <?php 
+            } ?>          
         ]);
 
         var options = {
