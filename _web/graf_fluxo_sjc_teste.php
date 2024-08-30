@@ -11,8 +11,9 @@
   $hora = [];
   $hora2 = [];
 
-  while($dados = mysqli_fetch_assoc($result)){  
-                                    
+  $hora_intensidade = [];
+
+  while($dados = mysqli_fetch_assoc($result)){                                      
 
     if($dados['trafego'] == 'Intenso'){
       #echo '5 - ';
@@ -25,8 +26,12 @@
       #echo '<br>';
       $intensidade[] = 4;
     }
-    $hora[] = $dados['hora_coleta'];         
+    #$hora[] = $dados['hora_coleta']; 
+    $hora[] = substr($dados['hora_coleta'], 0, 5); 
+    $hora_intensidade[] = array($dados['hora_coleta'] => $intensidade);
   }
+
+  var_dump($hora_intensidade);
 
   $chaves = array_keys($intensidade);  
 
@@ -44,49 +49,52 @@
   }
   echo '<br>';
   echo '<br>';
-  echo 'Hora Inicial= '.$hora_inicial;
-  echo '<br>';
-  echo 'Hora Final= '.$hora_final;
+ #echo 'Hora Inicial= '.$hora_inicial;
+ # echo '<br>';
+  #echo 'Hora Final= '.$hora_final;
 
+  function geraHoras($inicial, $final){
+    $horas = [];
+    $momento = strtotime($inicial);
+    $final = strtotime($final);
+    #echo '<br> Função StrToTime Hora Final= '.$final;
 
-  function generateExpectedTimes($start, $end) {
-    $times = [];
-    $current = strtotime($start);
-    $end = strtotime($end);
-
-    while ($current <= $end) {
-        $times[] = date('H:i', $current);
-        $current = strtotime('+15 minutes', $current);
+    while($momento <= $final){
+      $horas[] = date('H:i', $momento);
+      $momento = strtotime('+15 minutes', $momento);
     }
+    #print_r($horas);
+    #echo '<br>';
+    return $horas;
+  }
 
-    return $times;
-}
+  $horas_totais = geraHoras($hora_inicial, $hora_final);
+  #echo '<br>';
+  #print_r($hora_format);
 
-// Função para verificar se todos os horários foram capturados
-function checkTimes($start, $end, $actualTimes) {
-    $expectedTimes = generateExpectedTimes($start, $end);
-    $missingTimes = array_diff($expectedTimes, $actualTimes);
-    $extraTimes = array_diff($actualTimes, $expectedTimes);
+  $horas_vagas = array_diff($horas_totais, $hora_format);
+  echo '<br> HORAS VAGAS <br> ';
+  print_r($horas_vagas);
+  echo '<br> --- <br> ';
 
-    if (empty($missingTimes) && empty($extraTimes)) {
-        return "Todos os horários foram capturados corretamente.";
-    } else {
-        $result = array(
-          'missing' => array_values($missingTimes),
-          'extra' => array_values($extraTimes)
-      );
-        return $result;
+  $horas_completas = array_merge($hora_format, $horas_vagas);
+ 
+  echo '<br> HORAS TOTAIS <br> ';
+  sort($horas_completas);
+  print_r($horas_completas);
+  echo '<br> --- <br> ';
+
+  $k = 0;
+  while(strtotime($horas_completas[$k]) != strtotime($hora_final)){
+    
+    if ($horas_completas[$k] == $hora_intensidade[$k]){
+      echo 'oi';
     }
-}
-#echo '<br>';
-$result = checkTimes($hora_inicial, $hora_final, $hora_format);
-#var_dump($result);
-#echo "Horários ausentes: " . implode(', ', $result['missing']) . "\n";
-#echo "Horários extras: " . implode(', ', $result['extra']) . "\n";
-
-echo '<br>';
-echo '<br>';
-print_r($result);
+    
+    echo $horas_completas[$k];
+    echo '<br>';
+    $k = $k+1;
+  }
 
 
 
