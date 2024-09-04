@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
   php-apache:
@@ -45,7 +45,7 @@ services:
         ipv4_address: 170.17.0.3
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_DATABASE: db_testes
+      MYSQL_DATABASE: db_ccr
       MYSQL_USER: aluno
       MYSQL_PASSWORD: my-password
       TZ: "America/Sao_Paulo"

@@ -2,57 +2,57 @@
   <head>
 
   <?php
-  include_once('conexao_ccr.php'); 
 
-  $sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='2024-08-25'";
-  $result = $conn->query($sql);
+  function hora_intensidade(){
 
-  $intensidade = [];
-  $hora = [];
-  $hora2 = [];
+    include_once('conexao_ccr.php'); 
+    $sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='2024-08-25'";
+    $result = $conn->query($sql);
+  
+    $cont_hr = 0; #contador
+    $intensidade = []; #armazena intensidade do tráfego
+    $hora_coleta = []; #Armazena as horas coletadas
+    $hora_inicial = 0;
+    $hora_final = 0;
+    $hora_intensidade = []; #Vetor que armazera hora e intensidade ao mesmo tempo
 
-  $hora_intensidade = [];
+    while($dados = mysqli_fetch_assoc($result)){
+      
+      if($cont_hr == 0){
+        $hora_inicial = substr($dados['hora_coleta'], 0, 5); 
+      }
+      $cont_hr++;
 
-  while($dados = mysqli_fetch_assoc($result)){                                      
-
-    if($dados['trafego'] == 'Intenso'){
-      #echo '5 - ';
-      #echo $dados['hora_coleta'];
-      #echo '<br>';
-      $intensidade[] = 5;
-    }elseif($dados['trafego'] == 'Lento'){
-      #echo '4 - ';
-      #echo $dados['hora_coleta'];
-      #echo '<br>';
-      $intensidade[] = 4;
+      if($dados['trafego'] == 'Intenso'){
+        #echo '5 - ';
+        #echo $dados['hora_coleta'];
+        #echo '<br>';
+        $intensidade[] = 5;
+        $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 5);
+      }elseif($dados['trafego'] == 'Lento'){
+        #echo '4 - ';
+        #echo $dados['hora_coleta'];
+        #echo '<br>';
+        $intensidade[] = 4;
+        $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 4);
+      }
+      #$hora[] = $dados['hora_coleta']; 
+      $hora_coleta[] = substr($dados['hora_coleta'], 0, 5); 
+      $hora_final = substr($dados['hora_coleta'], 0, 5); 
     }
-    #$hora[] = $dados['hora_coleta']; 
-    $hora[] = substr($dados['hora_coleta'], 0, 5); 
-    $hora_intensidade[] = array($dados['hora_coleta'] => $intensidade);
+
+    #var_dump($hora_intensidade);
+
+    #echo 'Hora Inicial= '.$hora_inicial;
+    #echo '<br>';
+    #echo 'Hora Final= '.$hora_final;
+
+    return [$hora_inicial, $hora_final, $hora_coleta, $intensidade, $hora_intensidade];
   }
 
-  var_dump($hora_intensidade);
-
-  $chaves = array_keys($intensidade);  
-
-  foreach($chaves as $i){
-
-    $format = $hora[$i];
-    $hora_format[] = substr($format, 0, 5);
-    echo $hora_format[$i].' - '.$intensidade[$i];
-    echo "<br>";
-
-    if($i == 1){
-      $hora_inicial = $hora_format[$i];
-    }
-    $hora_final = $hora_format[$i];
-  }
-  echo '<br>';
-  echo '<br>';
- #echo 'Hora Inicial= '.$hora_inicial;
- # echo '<br>';
-  #echo 'Hora Final= '.$hora_final;
-
+  [$hora_inicial, $hora_final, $hora_coleta, $intensidade, $hora_intensidade] = hora_intensidade();
+  
+  #FUNÇÃO PARA GERAR HORAS DE 15 EM 15 MINUTOS, BASEADOS DA PRIMEIRA E ÚLTIMA HORA DO BD
   function geraHoras($inicial, $final){
     $horas = [];
     $momento = strtotime($inicial);
@@ -69,34 +69,85 @@
   }
 
   $horas_totais = geraHoras($hora_inicial, $hora_final);
-  #echo '<br>';
-  #print_r($hora_format);
 
-  $horas_vagas = array_diff($horas_totais, $hora_format);
-  echo '<br> HORAS VAGAS <br> ';
-  print_r($horas_vagas);
+  echo '<br> HORAS TOTAIS DA FUNÇÃO GERAHORAS <br> ';
+  foreach($horas_totais as $ht){
+    echo $ht."<br>";
+  }
+
   echo '<br> --- <br> ';
 
-  $horas_completas = array_merge($hora_format, $horas_vagas);
- 
-  echo '<br> HORAS TOTAIS <br> ';
+  $horas_vagas = array_diff($horas_totais, $hora_coleta);
+
+  echo '<br> HORAS VAGAS DIFF<br> ';
+  foreach($horas_vagas as $hv){
+    echo $hv."<br>";
+    $hora_intensidade[] = [$hv => 0]; #Adicionando zeros nas horas vagas
+  }
+
+  echo '<br> --- <br> ';
+
+  // $horas_duplicadas = array_diff($hora_coleta, $horas_totais);
+
+  // echo '<br> HORAS DUPLICADAS DIFF<br> ';
+  // foreach($horas_duplicadas as $hd){
+  //   echo $hd."<br>";
+  // }
+
+  // echo '<br> --- <br> ';
+
+  $horas_completas = array_merge($hora_coleta, $horas_vagas);
   sort($horas_completas);
-  print_r($horas_completas);
+
+  echo '<br> HORAS COMPLETAS = HORAS COLETADAS + HORAS VAGAS<br> ';
+  foreach($horas_completas as $hc){
+    echo $hc."<br>";
+  }
+
   echo '<br> --- <br> ';
 
+  echo '<br> HORAS - INTENSIDADE JÁ COLETADAS <br> ';
+
+  // Função de comparação para ordenar horários
+  function compararHorarios($a, $b) {
+    // Obtendo as chaves dos arrays associativos
+    $chaveA = key($a);
+    $chaveB = key($b);
+
+    // Comparando as chaves
+    return strcmp($chaveA, $chaveB);
+  }
+
+  // Ordenando o array pelas chaves (horários)
+  uasort($hora_intensidade, 'compararHorarios');
+
+  $hora_intensidade = array_values($hora_intensidade);
+  
+  echo "<pre>";
+  print_r($hora_intensidade);
+  echo "</pre>";
+
+  echo '<br> --- <br> ';
+ 
+  #IMPRIMIR CORRETAMENTE HORA - INTENSIDADE PARA OS DADOS CAPTURADOS, E COLOCAR INTENSIDADE 0 PARA HORAS NÃO CAPTURADAS
+  
+  echo '<br> HORAS - INTENSIDADE COMPLETAS <br> ';
+
+  // $chave = key($hora_intensidade[0]);
+  // $valor = ($hora_intensidade[0][$chave]);
+  // echo $chave." - ".$valor;
+  
   $k = 0;
-  while(strtotime($horas_completas[$k]) != strtotime($hora_final)){
-    
-    if ($horas_completas[$k] == $hora_intensidade[$k]){
-      echo 'oi';
-    }
-    
-    echo $horas_completas[$k];
+  while(key($hora_intensidade[$k]) != $hora_final){
+
+    $chave_hora = key($hora_intensidade[$k]);
+    $valor_intensidade = ($hora_intensidade[$k][$chave_hora]);
+
+    echo $chave_hora." - ".$valor_intensidade;
+
     echo '<br>';
     $k = $k+1;
   }
-
-
 
 
   ?>
