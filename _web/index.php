@@ -102,7 +102,7 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body "> 
-                            <?php include "./graf_fluxo_sjc.php"; ?>
+                            
                         </div>
                         <div class="card-footer" style="height: 9rem;">
                             <h5 class="card-title">Gráfico de Linhas</h5>
