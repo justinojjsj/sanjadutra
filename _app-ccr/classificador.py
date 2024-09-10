@@ -75,10 +75,12 @@ else:
         del_cidade=0 #Delimitador do nome da cidade
 
         while(cont < tamanho_texto):
-            if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra'):
+            if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra' or texto_t[cont] == 'obra.'):
                 motivo = 'obra'
             elif(texto_t[cont] == 'acidente' or texto_t[cont] == 'acidente.'):
                 motivo = 'acidente'
+            elif(texto_t[cont] == 'detonação'):
+                motivo = 'detonacao'
             
             #Capturar a cidade que está a ocorrência (cidade com uma palavra, duas palavras: São Paulo, quatro palavras: São José dos Campos e três palavras: Serra das Araras)
             if(texto_t[cont] == 'Em' and del_cidade==0):
@@ -88,7 +90,7 @@ else:
                 if(texto_t[cont+2] == 'km'):
                     motivo = 'qtde_veiculos'
                 
-                if(texto_t[cont+1] == 'São' and texto_t[cont+2] == 'Paulo,'):
+                if((texto_t[cont+1] == 'São' and texto_t[cont+2] == 'Paulo,')or((texto_t[cont+1] == 'São' and texto_t[cont+2] == 'Paulo.'))):
                     cidade = texto_t[cont+1]+' '+texto_t[cont+2]
                     del_cidade=1
                     if(texto_t[cont+3] == 'km'):
