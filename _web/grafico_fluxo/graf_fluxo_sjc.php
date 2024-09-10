@@ -87,10 +87,10 @@
                 $cont_hr++;
 
                 if($dados['trafego'] == 'Intenso'){
-                  $intensidade[] = 5;
+                  $intensidade[] = 4;
                   $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 5);
                 }elseif($dados['trafego'] == 'Lento'){
-                  $intensidade[] = 4;
+                  $intensidade[] = 2;
                   $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 4);
                 }
                 $hora_coleta[] = substr($dados['hora_coleta'], 0, 5); 

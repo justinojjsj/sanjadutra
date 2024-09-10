@@ -19,17 +19,8 @@
 
 3. Próximo passo: Manipular dados classificados gerando gráficos de horários de fluxos
 
-    - Gráfico de colunas:
-        
-        - Quantidade de acidentes por cidade: 
-        
-        Enquanto motivo='acidente' e for a mesma cidade soma 1, até que motivo seja diferente ou vazio dentro das próximas 24 horas.
-    
-    - Gráfico de linha:
+   
+4. Dados para gerar gráfico de linha:
 
-        - Apresentar os horários com os maiores fluxos de veículos em São José dos Campos
-
-        cidade='São José dos Campos' e trafego='Intenso'
-        
-        SELECT * FROM `classificados` WHERE cidade='São José dos Campos' AND trafego='intenso'
-
+    - Alimentar tabela classificados_temporais com todos os horários Início 05:00 e fim 04:59
+    - Para os horários que tiver dados, alimentar normalmente, para os que não tiver, alimentar com zeros
