@@ -1,6 +1,6 @@
 FROM python:3.7.5
 WORKDIR /app
-COPY /_app-ccr/requirements.txt .
+COPY /_app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get update -y;
 RUN apt-get install -y nano;

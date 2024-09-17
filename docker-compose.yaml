@@ -75,7 +75,7 @@ services:
     container_name: sanjadutra_python_ccr
     restart: always
     volumes:
-      - ./_app-ccr:/app 
+      - ./_app:/app 
     tty: true
     networks:
       rede:

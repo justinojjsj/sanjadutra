@@ -17,7 +17,19 @@
    - data_coleta
    - hora_coleta
 
-3. Completar dados da tabela [classificados] enviando para tabela [classificados_temporal] com a finalidade de gerar gráfico de linha com horários de fluxos (no php):
+3. <CONCLUÍDO> Completar dados da tabela [classificados] enviando para tabela [classificados_temporal] com a finalidade de gerar gráfico de linha com horários de fluxos (no php):
 
-    - Alimentar tabela classificados_temporais com todos os horários Início 05:00 e fim 04:59;
-    - Para os horários que tiver dados, alimentar normalmente, para os que não tiver, alimentar com zeros.
+- Tabela de nomenclatura de tráfego. O nome é dado pela CCR e o índice foi estabelecido pelo grupo
+
+| Índice        | Tráfego       | 
+| ------------- | ------------- | 
+| 1             | Normal        | 
+| 2             | Acesso        | 
+| 3             | Lento         | 
+| 4             | Intenso       |
+| 5             | Congestionado |
+| 6             | Interditado   |
+
+4. Colocar dados no agendador de tarefas para executar todos os dias, uma vez ao dia, capturando os dados do dia anterior
+
+5. Fazer tabela no _web
