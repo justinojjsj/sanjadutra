@@ -27,6 +27,8 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 
 ### ccr.py
 
+- Acessa a página com informações de tráfego da rodovia, fornecidos pela CCR e salva no banco de dados de forma catalogada.
+
 ### classificador.py
 
 - Captura os dados de tráfego da rodovia Presidente Dutra sentido RIO-SP
