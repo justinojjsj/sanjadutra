@@ -9,7 +9,11 @@ import mysql.connector
 db_connection = mysql.connector.connect(host='170.17.0.3', user='root', password='my-secret-pw', database='db_ccr')
 cursor = db_connection.cursor()
 
-data = '2024-09-10'
+#data = '2024-09-18'
+#Capturando a data de um dia anterior
+data_atual = date.today()
+data_anterior = data_atual - timedelta(days=1)
+data = str(data_anterior)
 cidade = 'São José dos Campos'
 
 query = "SELECT * FROM classificados WHERE cidade=%s AND data_coleta=%s"
