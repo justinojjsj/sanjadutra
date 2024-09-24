@@ -2,37 +2,7 @@
 
 ## ETAPA DO DESENVOLVIMENTO
 
-1. <CONCLUÍDO> Capturar dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script [classificador.py] nos trechos:
-
-    Início: Km 128 (Caçapava)
-    Fim: km 162 (Jacareí)
-
-2. <CONCLUÍDO> Limpar os dados de [classificados] forma que fique:
-
-   - km_ini
-   - km_fim
-   - pista
-   - trafego
-   - cidade
-   - data_coleta
-   - hora_coleta
-
-3. <CONCLUÍDO> Completar dados da tabela [classificados] enviando para tabela [classificados_temporal] com a finalidade de gerar gráfico de linha com horários de fluxos (no php):
-
-- Tabela de nomenclatura de tráfego. O nome é dado pela CCR e o índice foi estabelecido pelo grupo
-
-| Índice        | Tráfego       | 
-| ------------- | ------------- | 
-| 1             | Normal        | 
-| 2             | Acesso        | 
-| 3             | Lento         | 
-| 4             | Intenso       |
-| 5             | Congestionado |
-| 6             | Interditado   |
-
-4. <Concluído> Colocar dados no agendador de tarefas para executar todos os dias, uma vez ao dia, capturando os dados do dia anterior
-
-5. Fazer tabela no _web
+Fazer tabela no _web gerar gráfico de linha com horários de fluxos (no php)
 
 ## SCRIPTs SHELL
 
@@ -55,6 +25,22 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 
 ## SCRIPTs PYTHON
 
+### ccr.py
+
+### classificador.py
+
+- Captura os dados de tráfego da rodovia Presidente Dutra sentido RIO-SP
+- Limpa os dados e salva na tabela [classificados] do banco de dados da seguinte forma:
+
+   - km_ini
+   - km_fim
+   - pista
+   - trafego
+   - cidade
+   - data_coleta
+   - hora_coleta
+
+
 ### classificador_temporal.py
 
 - Lê a tabela [classificados] do banco de dados filtrando São José dos Campos, um dia anterior.
@@ -71,4 +57,4 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 | 5             | Congestionado |
 | 6             | Interditado   |
 
-- Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR, já a coluna índice foi estabelecida pelo grupo a fim de gerar os gráficos no php.
+- Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR, já a coluna 'Índice' foi estabelecida pelo grupo a fim de gerar os gráficos no php.
