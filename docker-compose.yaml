@@ -9,7 +9,6 @@ services:
     container_name: sanjadutra_php_apache
     volumes:
       - ./_web:/var/www/html
-      - ./sites-available/:/etc/apache2/sites-available/
     ports:
       - 88:80
     networks:

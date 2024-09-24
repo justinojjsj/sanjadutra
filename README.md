@@ -56,3 +56,33 @@ Para funcionar os sistemas é necessário:
     ```
     chmod u+x /app/exec.sh
     ```
+
+## DIRETÓRIOS
+> Cada diretório possui seu próprio README.md
+
+### _app
+- Scripts python e shell
+
+### _db
+- Backups do banco de dados denominado db_ccr_data.sql
+
+### _web
+- Arquivos referentes ao conteúdo web, back e frontend.
+
+## ARQUIVOS DOCKER 
+- É necessário que esses arquivos fiquem na raiz do sistema, pois se estiverem dentro de diretórios não funciona
+
+### docker-compose.yaml
+- Arquivo de configuração dos containers
+
+### docker-entrypoint.sh
+- Utilizado pelo dockerfile-python-ccr para executar alguns comandos após a instalação do container
+
+### dockerfile-db
+- Executa comandos na instalação do container de banco de dados
+
+### dockerfile-php-apache
+- Executa comandos na instalação do container de php-apache
+
+### dockerfile-python-ccr
+- Executa comandos na instalação do container python
