@@ -60,3 +60,13 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 | 6             | Interditado   |
 
 - Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR, já a coluna 'Índice' foi estabelecida pelo grupo a fim de gerar os gráficos no php.
+
+## OUTROS
+
+### hora_executada.log
+
+Armazena os logs que contém os instantes que foram executados os scripts shell
+
+### requirements.txt
+
+Deve-se colocar nesse arquivo todas as bibliotecas que o python irá utilizar para executar os scripts. Esse arquivo é lido no momento da instalação dos containers, já instalando as bibliotecas.
