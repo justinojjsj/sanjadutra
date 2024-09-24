@@ -1,9 +1,5 @@
 # SANJADUTRA _APP
 
-## ETAPA DO DESENVOLVIMENTO
-
-Fazer tabela no _web gerar gráfico de linha com horários de fluxos (no php)
-
 ## SCRIPTs SHELL
 
 ### agendador.sh
@@ -52,6 +48,7 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 |       Tabela de tráfego       |
 | Índice        | Tráfego       | 
 | ------------- | ------------- | 
+| 0             | fluxo_continuo| 
 | 1             | Normal        | 
 | 2             | Acesso        | 
 | 3             | Lento         | 
@@ -59,7 +56,7 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 | 5             | Congestionado |
 | 6             | Interditado   |
 
-- Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR, já a coluna 'Índice' foi estabelecida pelo grupo a fim de gerar os gráficos no php.
+- Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR (exceto a primeira linha, fluxo_continuo, que são os momentos que não a registros da concessionário, atribuíndo-se índice 0), já a coluna 'Índice' foi estabelecida pelo grupo a fim de gerar os gráficos no php.
 
 ## OUTROS
 

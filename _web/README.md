@@ -1,18 +1,50 @@
-# SANJADUTRA _web
+# SANJADUTRA _WEB
 
-## Index
+## SCRIPTS web
 
-- Colocar gráficos dentro de janelas modal na página principal (index).
+### conexao_ccr.php
+- Arquivo que realiza a conexão com o banco de dados
 
-1. Gráficos de linhas (Joel)
+### datahora.js
+- Script java que gera a data e hora real, que fica aparecendo no index.php.
 
-- Pasta grafico_fluxo
-- Fitragem por checkbox das cidades;
+### header.php
+- Configurações iniciais da página HTML
+- Referências de arquivos de configuração remotos e locais .css e .js
+
+### index.php
+- Card com notícias da rodovia em tempo real
+- Gráficos em janelas modal `EM DESENVOLVIMENTO`
+
+## DIRETÓRIOS
+
+### bkp
+- Backups de arquivos originais até serão totalmente substituídos
+
+### css
+- Arquivos de formatação das páginas
+
+### grafico_fluxo `EM DESENVOLVIMENTO`
+
+> Gráficos de fluxo de veículos
+
+1. Gráfico de tempo atual:
+
+- Gráfico de linha com horários de fluxos de tempo atual sem seleção de filtro de data ou cidade;
 - Alterar numeração para textos representativos (4 - Intenso; 2 - Lento; 0 - Fluxo contínuo);
-- Gráfico de tempo atual sem seleção de filtro de data ou cidade;
-- Gráfico de estatísica com filtros. Realizar após estar com a tabela classificados_temporais finalizada (fazendo no python).
 
-2. Gráfico de colunas (Lucas):
-        
-- Quantidade de acidentes por cidade:
-    - Sugestão: Enquanto motivo='acidente' e for a mesma cidade soma 1, até que motivo seja diferente ou vazio dentro das próximas 24 horas.
+2. Gráfico temporal
+
+- Filtro por checkbox: cidades e datas, com atualização automática do gráfico.
+
+### grafico_acidentes `EM DESENVOLVIMENTO`
+
+> Gráficos de quatidativo de acidentes por cidade 
+
+### img
+
+- Imagens usadas nas paǵinas
+
+### locais
+
+- Tabela que apresenta a relação cidades x kilometragem
