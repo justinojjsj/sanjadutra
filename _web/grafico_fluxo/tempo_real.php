@@ -1,54 +1,9 @@
 <html>
   <body>
 
-    <h1> GRÁFICO DE INTENSIDADE DE TRÁFEGO POR HORAS EM TEMPO REAL </h1>
+    <h1> GRÁFICO DE TRÁFEGO EM TEMPO REAL SJC </h1>
     
-    <?php
-      include_once('../conexao_ccr2.php'); 
-
-      // Verifica a conexão
-      if ($conn->connect_error) {
-          die("Falha na conexão: " . $conn->connect_error);
-      }
-
-      // Inicializa variável para armazenar a mensagem
-      $msg = "";
-
-      // Verifica se o formulário foi enviado
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // Verifica se a data foi selecionada
-          if (isset($_POST['datas'])) {
-              // Captura a data selecionada
-              $dataSelecionada = $_POST['datas'];
-              #$msg = "Data selecionada: " . htmlspecialchars($dataSelecionada);
-              $msg = htmlspecialchars($dataSelecionada);
-          } else {
-              $msg = "Nenhuma data foi selecionada.";
-          }
-      }
-
-      // Consulta ao banco de dados
-      $sql = "SELECT DISTINCT data_coleta FROM classificados;";
-      $result = $conn->query($sql);
-      
-    ?>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="datas">Escolha uma data:</label>
-        <select name="datas" id="datas">
-            <?php
-            if ($result->num_rows > 0) {
-                // Exibe cada data como uma opção
-                while($row = $result->fetch_assoc()) {
-                    echo '<option value="' . $row["data_coleta"] . '">' . $row["data_coleta"] . '</option>';
-                }
-            } else {
-                echo '<option value="">Nenhuma data disponível</option>';
-            }
-            ?>
-        </select>
-        <input type="submit" value="Enviar">
-    </form>
+    
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
@@ -64,8 +19,10 @@
 
             function hora_intensidade(){
               include_once('../conexao_ccr.php'); 
-              global $msg;
-              $sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='$msg'";
+              
+              global $hoje;
+              $hoje = date("Y-m-d");
+              $sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='$hoje'";
               $result = $conn->query($sql);
 
               $cont_hr = 0; #contador
@@ -84,10 +41,22 @@
 
                 if($dados['trafego'] == 'Intenso'){
                   $intensidade[] = 4;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 5);
-                }elseif($dados['trafego'] == 'Lento'){
-                  $intensidade[] = 2;
                   $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 4);
+                }elseif($dados['trafego'] == 'Lento'){
+                  $intensidade[] = 3;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 3);
+                }elseif($dados['trafego'] == 'Acesso'){
+                  $intensidade[] = 2;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 2);
+                }elseif($dados['trafego'] == 'Normal'){
+                  $intensidade[] = 1;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 1);
+                }elseif($dados['trafego'] == 'Congestionado'){
+                  $intensidade[] = 5;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 5);
+                }elseif($dados['trafego'] == 'Interditado'){
+                  $intensidade[] = 6;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 6);
                 }
                 $hora_coleta[] = substr($dados['hora_coleta'], 0, 5); 
                 $hora_final = substr($dados['hora_coleta'], 0, 5); 
@@ -157,7 +126,7 @@
         ]);
 
         var options = {
-          title: 'Cidade: São José dos Campos - Data: <?php echo $msg  ?>',
+          title: 'Cidade: São José dos Campos - Data: <?php echo $hoje  ?>',
           curveType: 'function',
           legend: { position: 'bottom' }
         };

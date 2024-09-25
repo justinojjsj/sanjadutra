@@ -30,8 +30,8 @@
 
 1. Gráfico de tempo atual:
 
-- Gráfico de linha com horários de fluxos de tempo atual sem seleção de filtro de data ou cidade;
-- Alterar numeração para textos representativos (4 - Intenso; 2 - Lento; 0 - Fluxo contínuo);
+- Rotular valores do eixo y;
+
 
 2. Gráfico temporal
 
