@@ -28,7 +28,7 @@
 
 > Gráficos de fluxo de veículos
 
-1. Gráfico de tempo atual:
+1. Gráfico de tempo atual: `OK`
 
 - Rotular valores do eixo y;
 
