@@ -1,8 +1,7 @@
 <html>
   <body>
 
-    <h1> GRÁFICO DE TRÁFEGO EM TEMPO REAL SJC </h1>
-    
+    <h1> GRÁFICO DE TRÁFEGO EM TEMPO REAL SJC </h1>  
     
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -17,12 +16,16 @@
 
           <?php
 
+            date_default_timezone_set('America/Sao_Paulo');
+
             function hora_intensidade(){
               include_once('../conexao_ccr.php'); 
               
               global $hoje;
               $hoje = date("Y-m-d");
-              $sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='$hoje'";
+              #$sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='$hoje'";
+              $sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";
+
               $result = $conn->query($sql);
 
               $cont_hr = 0; #contador
@@ -126,9 +129,34 @@
         ]);
 
         var options = {
-          title: 'Cidade: São José dos Campos - Data: <?php echo $hoje  ?>',
-          curveType: 'function',
-          legend: { position: 'bottom' }
+          height: 600,
+          vAxis: {
+            title: 'Cidade: São José dos Campos - Data: <?php echo $hoje  ?>',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            ticks: [{
+              v: 0,
+              f: "Contínuo"
+            }, {
+              v: 1,
+              f: "Normal"
+            }, {
+              v: 2,
+              f: "Acesso"
+            }, {
+              v: 3,
+              f: "Lento"
+            }, {
+              v: 4,
+              f: "Intenso"
+            }, {
+              v: 5,
+              f: "Congestionado"
+            }, {
+              v: 6,
+              f: "Interditado"
+            }]
+          }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));

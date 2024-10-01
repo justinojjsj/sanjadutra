@@ -14,10 +14,17 @@ cursor = db_connection.cursor()
 data_atual = date.today()
 data_anterior = data_atual - timedelta(days=1)
 data = str(data_anterior)
-cidade = 'São José dos Campos'
+#cidade = 'São José dos Campos'
 
-query = "SELECT * FROM classificados WHERE cidade=%s AND data_coleta=%s"
-cursor.execute(query, (cidade, data))
+#query = "SELECT * FROM classificados WHERE cidade=%s AND data_coleta=%s"
+#cursor.execute(query, (cidade, data))
+
+query = """
+SELECT *, %s AS data_especifica
+FROM classificados
+WHERE cidade LIKE 'São José%';
+"""
+cursor.execute(query, (data,))
 
 resultados = cursor.fetchall()
 

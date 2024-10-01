@@ -95,7 +95,7 @@ else:
                     del_cidade=1
                     if(texto_t[cont+3] == 'km'):
                         motivo = 'qtde_veiculos'
-                elif(texto_t[cont+1] == 'São' and texto_t[cont+2] != 'Paulo,'):
+                elif((texto_t[cont+1] == 'São' and texto_t[cont+2] != 'Paulo,')or((texto_t[cont+1] == 'São' and texto_t[cont+2] != 'Paulo.'))):
                     cidade = texto_t[cont+1]+' '+texto_t[cont+2]+' '+texto_t[cont+3]+' '+texto_t[cont+4]
                     del_cidade=1
                     if(texto_t[cont+5] == 'km'):
