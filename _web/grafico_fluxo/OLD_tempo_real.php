@@ -17,6 +17,7 @@
           <?php
 
             date_default_timezone_set('America/Sao_Paulo');
+            global hora_final = date('H:i');
 
             function hora_intensidade(){
               include_once('../conexao_ccr.php'); 
@@ -32,7 +33,7 @@
               $intensidade = []; #armazena intensidade do tráfego
               $hora_coleta = []; #Armazena as horas coletadas
               $hora_inicial = 0;
-              $hora_final = 0;
+              //$hora_final = 0;
               $hora_intensidade = []; #Vetor que armazera hora e intensidade ao mesmo tempo
 
               while($dados = mysqli_fetch_assoc($result)){
@@ -62,7 +63,7 @@
                   $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 6);
                 }
                 $hora_coleta[] = substr($dados['hora_coleta'], 0, 5); 
-                $hora_final = substr($dados['hora_coleta'], 0, 5); 
+                //$hora_final = substr($dados['hora_coleta'], 0, 5); 
               }
 
               return [$hora_inicial, $hora_final, $hora_coleta, $intensidade, $hora_intensidade];

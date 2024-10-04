@@ -28,9 +28,11 @@
 
 > Gráficos de fluxo de veículos
 
-1. Gráfico de tempo atual: `OK`
+1. Gráfico de tempo atual: 
 
-- Rotular valores do eixo y;
+- Rotular valores do eixo y; `OK`
+
+- Colocar último horário nas horas;
 
 
 2. Gráfico temporal

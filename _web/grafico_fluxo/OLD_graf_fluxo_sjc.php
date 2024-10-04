@@ -1,8 +1,75 @@
 <html>
   <body>
 
-    <h1> GRÁFICO DE TRÁFEGO EM TEMPO REAL SJC </h1>  
+    <h1> GRÁFICO DE INTENSIDADE DE TRÁFEGO POR HORAS EM TEMPO REAL </h1>
     
+    <?php
+      include_once('../conexao_ccr2.php'); 
+
+      // Verifica a conexão
+      if ($conn->connect_error) {
+          die("Falha na conexão: " . $conn->connect_error);
+      }
+
+      // Inicializa variável para armazenar a mensagem
+      $msg = "";
+
+      // Verifica se o formulário foi enviado
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          // Verifica se a data foi selecionada
+          if (isset($_POST['datas']) and (isset($_POST['cidade']))) {
+              // Captura a data selecionada
+              $dataSelecionada = $_POST['datas'];
+              $cidadeSelecionada = $_POST['cidade'];
+              #$msg = "Data selecionada: " . htmlspecialchars($dataSelecionada);
+              $msg = htmlspecialchars($dataSelecionada);
+              $msg2 = htmlspecialchars($cidadeSelecionada);
+          } else {
+              $msg = "Nenhuma data foi selecionada.";
+              $msg2 = "Nenhuma cidade foi selecionada.";
+          }
+      }
+
+      // Consulta ao banco de dados
+      $sql = "SELECT DISTINCT data_coleta FROM classificados;";
+      $result = $conn->query($sql);
+
+      $sql_cidade = "SELECT DISTINCT cidade FROM classificados;";
+      $result_cidade = $conn->query($sql_cidade);
+      
+    ?>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="datas">Escolha uma data:</label>
+        <select name="datas" id="datas">
+            <?php
+            if ($result->num_rows > 0) {
+                // Exibe cada data como uma opção
+                while($row = $result->fetch_assoc()) {
+                    echo '<option value="' . $row["data_coleta"] . '">' . $row["data_coleta"] . '</option>';
+                }
+            } else {
+                echo '<option value="">Nenhuma data disponível</option>';
+            }
+            ?>
+        </select>
+        </br>
+        <label for="datas">Escolha uma cidade:</label>
+        <select name="cidade" id="cidade">
+            <?php
+            if ($result_cidade->num_rows > 0) {
+                // Exibe cada data como uma opção
+                while($row_cidade = $result_cidade->fetch_assoc()) {
+                    echo '<option value="' . $row_cidade["cidade"] . '">' . $row_cidade["cidade"] . '</option>';
+                }
+            } else {
+                echo '<option value="">Nenhuma cidade disponível</option>';
+            }
+            ?>
+        </select>
+        </br>
+        <input type="submit" value="Enviar">
+    </form>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
@@ -16,19 +83,12 @@
 
           <?php
 
-            date_default_timezone_set('America/Sao_Paulo');
-
             function hora_intensidade(){
               include_once('../conexao_ccr.php'); 
-              
-              global $hoje;
-              $hoje = date("Y-m-d");
-              //global $hora_final2;
-              //$hora_final2 = date('H:i');                            
-              
-              #$sql = "SELECT * FROM classificados WHERE cidade='São José dos Campos' AND data_coleta='$hoje'";
-              $sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";
-
+              global $msg;
+              global $msg2;
+              $sql = "SELECT * FROM classificados WHERE cidade='$msg2' AND data_coleta='$msg'";
+              #$sql = "SELECT *, '$msg' AS data_coleta FROM classificados WHERE cidade LIKE 'São José%'";
               $result = $conn->query($sql);
 
               $cont_hr = 0; #contador
@@ -36,7 +96,7 @@
               $hora_coleta = []; #Armazena as horas coletadas
               $hora_inicial = 0;
               $hora_final = 0;
-              $hora_intensidade = []; #Vetor que armazera hora e intensidade ao mesmo tempo            
+              $hora_intensidade = []; #Vetor que armazera hora e intensidade ao mesmo tempo
 
               while($dados = mysqli_fetch_assoc($result)){
                 
@@ -47,22 +107,10 @@
 
                 if($dados['trafego'] == 'Intenso'){
                   $intensidade[] = 4;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 4);
-                }elseif($dados['trafego'] == 'Lento'){
-                  $intensidade[] = 3;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 3);
-                }elseif($dados['trafego'] == 'Acesso'){
-                  $intensidade[] = 2;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 2);
-                }elseif($dados['trafego'] == 'Normal'){
-                  $intensidade[] = 1;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 1);
-                }elseif($dados['trafego'] == 'Congestionado'){
-                  $intensidade[] = 5;
                   $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 5);
-                }elseif($dados['trafego'] == 'Interditado'){
-                  $intensidade[] = 6;
-                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 6);
+                }elseif($dados['trafego'] == 'Lento'){
+                  $intensidade[] = 2;
+                  $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => 4);
                 }
                 $hora_coleta[] = substr($dados['hora_coleta'], 0, 5); 
                 $hora_final = substr($dados['hora_coleta'], 0, 5); 
@@ -132,34 +180,9 @@
         ]);
 
         var options = {
-          height: 600,
-          vAxis: {
-            title: 'Cidade: São José dos Campos - Data: <?php echo $hoje;?> - Hora: <?php echo $hora_final2; ?>',
-            curveType: 'function',
-            legend: { position: 'bottom' },
-            ticks: [{
-              v: 0,
-              f: "Contínuo"
-            }, {
-              v: 1,
-              f: "Normal"
-            }, {
-              v: 2,
-              f: "Acesso"
-            }, {
-              v: 3,
-              f: "Lento"
-            }, {
-              v: 4,
-              f: "Intenso"
-            }, {
-              v: 5,
-              f: "Congestionado"
-            }, {
-              v: 6,
-              f: "Interditado"
-            }]
-          }
+          title: 'Cidade: <?php echo $msg2  ?> - Data: <?php echo $msg  ?>',
+          curveType: 'function',
+          legend: { position: 'bottom' }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
