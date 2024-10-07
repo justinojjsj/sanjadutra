@@ -134,7 +134,7 @@
         var options = {
           height: 600,
           vAxis: {
-            title: 'Cidade: São José dos Campos - Data: <?php echo $hoje;?> - Hora: <?php echo $hora_final2; ?>',
+            title: 'Cidade: São José dos Campos - Data: <?php echo $hoje;?> - Hora: <?php echo $hora_final; ?>',
             curveType: 'function',
             legend: { position: 'bottom' },
             ticks: [{
