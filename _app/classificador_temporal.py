@@ -38,18 +38,20 @@ for linha in resultados:
 #    print(f"km_ini = {linha[1]} | km_fim = {linha[2]} | pista = {linha[3]} | trafego = {linha[4]} | motivo = {linha[5]} | cidade = {linha[6]} | data_coleta = {linha[7]} | hora_coleta = {linha[8]} ")
     # Inserindo dados originais na tabela classificados_temporais, alterando trafego para valor numérico
     trafego = linha[4]
-    if trafego == 'Normal':
+    if trafego == 'Normal' or trafego == 'normal':
         trafego = 1
-    elif trafego == 'Acesso':
+    elif trafego == 'Acesso' or trafego == 'normal':
         trafego = 2
-    elif trafego == 'Lento':
+    elif trafego == 'Lento' or trafego == 'lento':
         trafego = 3
-    elif trafego == 'Intenso':
+    elif trafego == 'Intenso' or trafego == 'intenso':
         trafego = 4
-    elif trafego == 'Congestionado':
+    elif trafego == 'Congestionado' or trafego == 'congestionado':
         trafego = 5
-    elif trafego == 'Interditado':
+    elif trafego == 'Interditado' or trafego == 'interditado':
         trafego = 6
+    elif trafego == 'Bloqueado' or trafego == 'bloqueado':
+        trafego = 7
 
     # Coletando dados de horas para manipulação
     hb = linha[8]

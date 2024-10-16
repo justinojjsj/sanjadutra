@@ -27,6 +27,9 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
+
+try{
+
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);                      
 
@@ -40,7 +43,9 @@
                     include_once('../conexao_ccr.php'); 
                     global $hoje;
                     $hoje = date("Y-m-d");
-                    $sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";
+                    $hoje = '2024-10-15';
+                    #$sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";
+                    $sql = "SELECT * FROM classificados WHERE data_coleta = '$hoje' AND cidade LIKE 'São José%'";
                     $result = $conn->query($sql);
 
                     $cont_hr = 0; 
@@ -57,12 +62,21 @@
                         $cont_hr++;
 
                         $intensidadeValor = match ($dados['trafego']) {
-                            'Intenso' => 4,
-                            'Lento' => 3,
-                            'Acesso' => 2,
-                            'Normal' => 1,
-                            'Congestionado' => 5,
+                            'Bloqueado' => 7,
+                            'bloqueado' => 7,
                             'Interditado' => 6,
+                            'interditado' => 6,
+                            'Congestionado' => 5,
+                            'congestionado' => 5,
+                            'Intenso' => 4,
+                            'intenso' => 4,
+                            'Lento' => 3,
+                            'lento' => 3,
+                            'Acesso' => 2,
+                            'acesso' => 2,
+                            'Normal' => 1,
+                            'normal' => 1,
+                            default => 0, #Coloquei esse caso para não parar de funcionar o gráfico inesperadamente caso a CCR cadastro um novo tipo de tráfego não previsto no meu código
                         };
                         $intensidade[] = $intensidadeValor;
                         $hora_intensidade[] = array(substr($dados['hora_coleta'], 0, 5) => $intensidadeValor);
@@ -138,7 +152,8 @@
                     { v: 3, f: "Lento" },
                     { v: 4, f: "Intenso" },
                     { v: 5, f: "Congestionado" },
-                    { v: 6, f: "Interditado" }
+                    { v: 6, f: "Interditado" },
+                    { v: 7, f: "Bloqueado" }
                 ]
             }
         };
@@ -148,6 +163,10 @@
     }
 
     window.addEventListener('resize', drawChart);
+}catch (e) {
+    // Exibir erro na tela
+    document.getElementById('erro').textContent = "Erro: " + e.message;
+}
 </script>
 
 <div id="curve_chart"></div>
