@@ -1,6 +1,5 @@
 <html>
     <?php
-        #Ajustar timezone no PHP
         date_default_timezone_set('America/Sao_Paulo');
     ?>
     <head>
@@ -8,6 +7,10 @@
         <meta http-equiv="refresh" content="180">
         <title>SanjaDutra</title>
         <link rel="icon" type="image/png" href="./img/favicon.ico"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <?php include "./header.php"; ?>
     </head>
 
@@ -54,19 +57,14 @@
                         <div class="card-body "> 
                             <?php
                                 include_once('conexao_ccr.php');
-
-                                // Pega a última hora que está salva no banco para obter dados mais recentes
                                 $consulta = "SELECT * FROM dados ORDER BY id DESC LIMIT 1";
                                 $resultado = mysqli_query($conn, $consulta);
                                 $dados = mysqli_fetch_assoc($resultado);                                         
                                 $hora_coleta = $dados['hora_coleta']; 
                                 $data_coleta = $dados['data_coleta'];
                                 $data_coleta = implode("/",array_reverse(explode("-",$data_coleta)));
-
-                                // Com base na última hora salva, captura as demais notícias de tráfego
                                 $sql = "SELECT * FROM dados WHERE hora_coleta='$hora_coleta' ORDER BY id DESC LIMIT 3";
                                 $result = $conn->query($sql);
-
                                 while($dados = mysqli_fetch_assoc($result)){
                                     if($dados['id']%2 == 0){
                                         echo "<div id='back-cinza' style='margin-bottom: 20px; background-color: rgb(227, 228, 228, 0.5);'>";
@@ -84,7 +82,7 @@
                                 }  
                             ?>           
                         </div>
-                        <div class="card-footer" style="height: 9rem;">
+                        <div class="card-footer  text-center" style="height: 9rem;">
                             <h5 class="card-title">Condições de Tráfego na Via Dutra</h5>
                             <p class="card-text">Dados Obtidos da Concessionária CCR-RIOSP, referente ao trecho de São José dos Campos, Km 246 e proximidades.</p>
                         </div>
@@ -98,15 +96,22 @@
                             </small>
                         </div>
                     </div>
-                </div> 
+                </div>
+
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body "> 
-                            
+                        <div class="card-body ">                            
+                            <img class="card-img-top img-fluid" src="img/real.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
                         </div>
-                        <div class="card-footer" style="height: 9rem;">
-                            <h5 class="card-title">Gráfico de Linhas</h5>
-                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
+                        <div class="card-footer  text-center" style="height: 9rem;">
+                            <h5 class="card-title">Gráfico Tempo Real</h5>
+                            <p class="card-text">Gráfico em tempo real do fluxo de veículos em São José dos Campos.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModalReal">
+                                    Ver Tempo real
+                            </button>
+                            <a href="grafico_fluxo/tempo_real.php" class="btn btn-primary" target="_blank">
+                                Abrir em outra página
+                            </a>
                         </div>
                         <div class="card-footer">
                             <small>Última atualização: 
@@ -118,10 +123,76 @@
                             </small>
                         </div>
                     </div>
-                </div>                     
-            </div>  
-                         
+                </div> 
+                
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body ">                            
+                            <img class="card-img-top img-fluid" src="img/temporal2.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
+                        </div>
+                        <div class="card-footer  text-center" style="height: 9rem;">
+                            <h5 class="card-title">Gráfico Temporal</h5>
+                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModal">
+                                    Ver Gráfico Temporal
+                            </button>
+                            <a href="grafico_fluxo/temporal.php" class="btn btn-primary" target="_blank">
+                                Abrir em outra página
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <small>Última atualização: 
+                                <?php        
+                                    echo $hora_coleta;
+                                    echo ' de ';
+                                    echo $data_coleta;                     
+                                ?>                            
+                            </small>
+                        </div>
+                    </div>
+                </div> 
+                
+                
+
+        <!-- Modal -->
+        <div class="modal fade" id="graficoModal" tabindex="-1" role="dialog" aria-labelledby="graficoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="graficoModalLabel">Gráfico Temporal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="grafico_fluxo/temporal.php" style="width: 100%; height: 800px; border: none;"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="modal fade" id="graficoModalReal" tabindex="-1" role="dialog" aria-labelledby="graficoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="graficoModalLabel">Gráfico Tempo Real</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="grafico_fluxo/tempo_real.php" style="width: 100%; height: 800px; border: none;"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             </br>
         </div>
