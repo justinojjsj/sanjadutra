@@ -75,7 +75,7 @@ else:
         del_cidade=0 #Delimitador do nome da cidade
 
         while(cont < tamanho_texto):
-            if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra' or texto_t[cont] == 'obra.' or texto_t[cont] == ',obra'):
+            if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra' or texto_t[cont] == 'obra.' or texto_t[cont] == ',obra' or texto_t[cont] == ',obras'):
                 motivo = 'obra'
             elif(texto_t[cont] == 'acidente' or texto_t[cont] == 'acidente.'):
                 motivo = 'acidente'

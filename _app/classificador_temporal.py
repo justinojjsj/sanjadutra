@@ -19,12 +19,16 @@ cidade = 'São José dos Campos'
 #query = "SELECT * FROM classificados WHERE cidade=%s AND data_coleta=%s"
 #cursor.execute(query, (cidade, data))
 
-query = """
-SELECT *, %s AS data_especifica
-FROM classificados
-WHERE cidade LIKE 'São José%';
-"""
-cursor.execute(query, (data,))
+# query = """
+# SELECT *, %s AS data_especifica
+# FROM classificados
+# WHERE cidade LIKE 'São José%';
+# """
+
+data = '2024-10-15'
+cidade = 'São José%'
+query = "SELECT * FROM classificados WHERE data_coleta=%s AND cidade LIKE %s"
+cursor.execute(query, (data, cidade))
 
 resultados = cursor.fetchall()
 
@@ -53,13 +57,31 @@ for linha in resultados:
     elif trafego == 'Bloqueado' or trafego == 'bloqueado':
         trafego = 7
 
+    cor = '#EE6AA7'
+    motivo = linha[5]
+    if motivo == 'obra':
+        cor = '#A52A2A'
+    elif motivo == 'acidente':
+        cor = '#FF0000'
+    elif motivo == 'detonacao':
+        cor = '#838B8B'
+    elif motivo == 'qtde_veiculos':
+        cor = '#FFFF00'
+    else:
+        motivo = 'outro'
+        cor = '#1C1C1C'
+    
+    print(motivo)
+    print(cor)
+
     # Coletando dados de horas para manipulação
     hb = linha[8]
     remove_segundos = hb[:-3]
     horarios_banco.append(remove_segundos)
 
-    insere_originais = "INSERT INTO classificados_temporais (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-    dados = (linha[1], linha[2], linha[3], trafego, linha[5], linha[6], linha[7], remove_segundos)
+    insere_originais = "INSERT INTO classificados_temporais (km_ini, km_fim, pista, trafego, motivo, cor, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    dados = (linha[1], linha[2], linha[3], trafego, motivo, cor, linha[6], linha[7], remove_segundos)
+    print(dados)
     cursor.execute(insere_originais, dados)
 
 horarios_banco = list(set(horarios_banco)) # Remove valores duplicados
