@@ -67,10 +67,3 @@ Armazena os logs que contém os instantes que foram executados os scripts shell
 ### requirements.txt
 
 Deve-se colocar nesse arquivo todas as bibliotecas que o python irá utilizar para executar os scripts. Esse arquivo é lido no momento da instalação dos containers, já instalando as bibliotecas.
-
-
-
-## CORRIGIR
-
-Classificador temporal dando pau pra salvar a cor
-Na seq ver se funcionou no temporal_cor.php (remover varialve cor local)

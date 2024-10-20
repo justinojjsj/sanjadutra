@@ -101,7 +101,6 @@
         var data = new google.visualization.DataTable();
         data.addColumn({ type: 'string', id: 'Evento' });
         data.addColumn({ type: 'string', id: 'Motivo' });
-        data.addColumn({ type: 'string', id: 'style', role: 'style' });
         data.addColumn({ type: 'date', id: 'Início' });
         data.addColumn({ type: 'date', id: 'Fim' });
 
@@ -123,11 +122,9 @@
                 if ($horaFim > $horaInicio) {
                     // Cria um evento único concatenando pista e motivo
                     $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
-                    #$cor = '#ADD8E6';
-                    $cor = htmlspecialchars($dados['cor']);
                     ?>
                     data.addRows([
-                        ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
+                        ['<?php echo $evento; ?>', '', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
                     ]);
                     <?php  
                 }
@@ -137,7 +134,7 @@
         var options = {
             timeline: { groupByRowLabel: true },
             height: 400,
-            //colors: ['#1b9e77', '#d95f02', '#7570b3']
+            colors: ['#1b9e77', '#d95f02', '#7570b3']
         };
 
         var chart = new google.visualization.Timeline(document.getElementById('curve_chart'));

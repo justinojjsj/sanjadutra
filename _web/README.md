@@ -14,7 +14,7 @@
 
 ### index.php
 - Card com notícias da rodovia em tempo real
-- Gráficos em janelas modal `EM DESENVOLVIMENTO`
+- Gráficos em janelas modal 
 
 ## DIRETÓRIOS
 
@@ -24,7 +24,7 @@
 ### css
 - Arquivos de formatação das páginas
 
-### grafico_fluxo `EM DESENVOLVIMENTO`
+### grafico_fluxo `DESENVOLVIMENTO FINALIZADO`
 
 > Gráficos de fluxo de veículos
 
@@ -32,16 +32,16 @@
 
 - Rotular valores do eixo y; `OK`
 
-- Colocar último horário nas horas;
+- Colocar último horário nas horas; `OK`
 
 
 2. Gráfico temporal
 
-- Filtro por checkbox: cidades e datas, com atualização automática do gráfico.
+- Filtro por checkbox: cidades e datas, com atualização automática do gráfico. `OK`
 
 ### grafico_acidentes `EM DESENVOLVIMENTO`
 
-> Gráficos de quatidativo de acidentes por cidade 
+> Gráficos de quantitativo de acidentes por cidade 
 
 ### img
 

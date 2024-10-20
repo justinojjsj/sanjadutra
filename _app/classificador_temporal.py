@@ -14,21 +14,10 @@ cursor = db_connection.cursor()
 data_atual = date.today()
 data_anterior = data_atual - timedelta(days=1)
 data = str(data_anterior)
-cidade = 'São José dos Campos'
-
-#query = "SELECT * FROM classificados WHERE cidade=%s AND data_coleta=%s"
-#cursor.execute(query, (cidade, data))
-
-# query = """
-# SELECT *, %s AS data_especifica
-# FROM classificados
-# WHERE cidade LIKE 'São José%';
-# """
-
-data = '2024-10-15'
 cidade = 'São José%'
 query = "SELECT * FROM classificados WHERE data_coleta=%s AND cidade LIKE %s"
 cursor.execute(query, (data, cidade))
+cidade = 'São José dos Campos'
 
 resultados = cursor.fetchall()
 
@@ -71,8 +60,8 @@ for linha in resultados:
         motivo = 'outro'
         cor = '#1C1C1C'
     
-    print(motivo)
-    print(cor)
+    #print(motivo)
+    #print(cor)
 
     # Coletando dados de horas para manipulação
     hb = linha[8]
@@ -121,8 +110,8 @@ horarios_zerados = [item for item in horarios if item not in horarios_banco]
 
 for hz in horarios_zerados:
     #print(hz)
-    sql = "INSERT INTO classificados_temporais (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-    dados = ('136', '139', 'Expressa', '0', 'fluxo_continuo', cidade, data, hz)
+    sql = "INSERT INTO classificados_temporais (km_ini, km_fim, pista, trafego, motivo, cor, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    dados = ('136', '139', 'Expressa', '0', 'fluxo_continuo', '#32CD32', cidade, data, hz)
     cursor.execute(sql, dados)
 
 # Confirmar a transação
