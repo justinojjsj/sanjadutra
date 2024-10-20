@@ -24,3 +24,4 @@
 | 4             | Intenso       |
 | 5             | Congestionado |
 | 6             | Interditado   |
+| 7             | Bloqueado     |

@@ -28,14 +28,14 @@
 
 > Gráficos de fluxo de veículos
 
-1. Gráfico de tempo atual: 
+1. Gráfico de tempo atual (tempo_real.php): 
 
 - Rotular valores do eixo y; `OK`
 
 - Colocar último horário nas horas; `OK`
 
 
-2. Gráfico temporal
+2. Gráfico temporal (temporal.php):
 
 - Filtro por checkbox: cidades e datas, com atualização automática do gráfico. `OK`
 

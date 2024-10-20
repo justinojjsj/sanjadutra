@@ -55,6 +55,7 @@ Configura o agendador de tarefas cron com os scripts que serão executados:
 | 4             | Intenso       |
 | 5             | Congestionado |
 | 6             | Interditado   |
+| 7             | Bloqueado     |
 
 - Observação: A coluna 'Tráfego' é baseado nos nomes disponibilizados pela CCR (exceto a primeira linha, fluxo_continuo, que são os momentos que não a registros da concessionário, atribuíndo-se índice 0), já a coluna 'Índice' foi estabelecida pelo grupo a fim de gerar os gráficos no php.
 
