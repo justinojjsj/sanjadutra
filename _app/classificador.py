@@ -42,7 +42,7 @@ hora = hora.strftime('%H:%M:%S')
 #Condicional criada para capturar dados dos momentos em que não há trânsito
 if(tamanho==1):
     #print(conteudo[0])
-    sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, data_coleta, hora_coleta) VALUES ('128','162','total','livre','{data}','{hora}')"
+    sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES ('128','162','Expressa','livre','fluxo_continuo','Todas','{data}','{hora}')"
     cursor = db_connection.cursor()
     cursor.execute(sql)
     cursor.close() 
@@ -75,12 +75,13 @@ else:
         del_cidade=0 #Delimitador do nome da cidade
 
         while(cont < tamanho_texto):
+            
             if(texto_t[cont] == 'Obras' or texto_t[cont] == 'obras' or texto_t[cont] == 'Obra' or texto_t[cont] == 'obra' or texto_t[cont] == 'obra.' or texto_t[cont] == ',obra' or texto_t[cont] == ',obras'):
                 motivo = 'obra'
             elif(texto_t[cont] == 'acidente' or texto_t[cont] == 'acidente.'):
                 motivo = 'acidente'
             elif(texto_t[cont] == 'detonação'):
-                motivo = 'detonacao'
+                motivo = 'detonacao'                
             
             #Capturar a cidade que está a ocorrência (cidade com uma palavra, duas palavras: São Paulo, quatro palavras: São José dos Campos e três palavras: Serra das Araras)
             if(texto_t[cont] == 'Em' and del_cidade==0):
