@@ -14,11 +14,11 @@ cursor = db_connection.cursor()
 data_atual = date.today()
 data_anterior = data_atual - timedelta(days=1)
 data = str(data_anterior)
-#data = '2024-10-23'
-cidade = 'São José%'
+data = '2024-10-23'
+cidade = 'Lavrinhas'
 query = "SELECT * FROM classificados WHERE data_coleta=%s AND cidade LIKE %s"
 cursor.execute(query, (data, cidade))
-cidade = 'São José dos Campos'
+#cidade = 'São José dos Campos'
 
 resultados = cursor.fetchall()
 
@@ -69,7 +69,7 @@ for linha in resultados:
     remove_segundos = hb[:-3]
     horarios_banco.append(remove_segundos)
 
-    insere_originais = "INSERT INTO classificados_temporais (km_ini, km_fim, pista, trafego, motivo, cor, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insere_originais = "INSERT INTO classificados_temporais2 (km_ini, km_fim, pista, trafego, motivo, cor, cidade, data_coleta, hora_coleta) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
     dados = (linha[1], linha[2], linha[3], trafego, motivo, cor, linha[6], linha[7], remove_segundos)
     print(dados)
     cursor.execute(insere_originais, dados)

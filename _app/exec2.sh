@@ -7,7 +7,7 @@ data_hora=$(date '+%d/%m/%y %H:%M:%S')
 espaco=" "
 
 #SELECIONA O ARQUIVO QUE IRÁ SALVAR
-nome_do_pc=$(cat nome_host.txt)
+nome_do_pc=$(cat /app/nome_host.txt)
 
 if [ "$nome_do_pc" = "montech" ]; then
     nome_arquivo_log="hora_executada_montech.log"

@@ -29,9 +29,10 @@
     date_default_timezone_set('America/Sao_Paulo');
 
     function hora_intensidade(){
-        include_once('../conexao_ccr.php'); 
+        include_once('../../conexao_ccr.php'); 
         global $hoje;
-        $hoje = date("Y-m-d");
+        //$hoje = date("Y-m-d");
+        $hoje = "2024-10-23";
         //echo $hoje;
         
         #$sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";

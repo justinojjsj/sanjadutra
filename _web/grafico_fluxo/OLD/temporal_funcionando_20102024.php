@@ -22,7 +22,7 @@
 </div>    
 
 <?php
-    include_once('../conexao_ccr.php'); 
+    include_once('../../conexao_ccr.php'); 
 
     // Verifica a conexão
     if ($conn->connect_error) {

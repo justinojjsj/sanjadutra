@@ -90,6 +90,7 @@
     </form>
 </div>
 
+
 <div id="curve_chart"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -107,18 +108,22 @@
 
         <?php
             include_once('../conexao_ccr.php'); 
-            $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data'";
-            #$sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
+            #$sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data'";
+            $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
             $result = $conn->query($sql);          
 
-            #$sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
-            #$result_hora_final = $conn->query($sql_hora_final);          
-            #$horaFim = mysqli_fetch_row($result_hora_final);
+           // $sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
+            //$result_hora_final = $conn->query($sql_hora_final);          
+            //$horaFim = mysqli_fetch_row($result_hora_final)[0];
+            
+            //echo $horaFim;
 
             while($dados = mysqli_fetch_assoc($result)){
                 // Define a data para o evento
                 $dataColeta = new DateTime($msg_data);
+                //$dataColeta = $msg_data;
                 $horaInicio = new DateTime($dados['hora_coleta']);
+                //$horaInicio = $dados['hora_coleta'];
                 
                 // Adiciona 15 minutos para a hora de fim
                 $horaFim = clone $horaInicio;
