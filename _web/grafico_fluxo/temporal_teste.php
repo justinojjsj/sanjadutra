@@ -90,20 +90,6 @@
     </form>
 </div>
 
-<div id="curve_chart"></div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['timeline']});
-    google.charts.setOnLoadCallback(drawChart);                      
-
-    function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn({ type: 'string', id: 'Evento' });
-        data.addColumn({ type: 'string', id: 'Motivo' });
-        data.addColumn({ type: 'string', id: 'style', role: 'style' });
-        data.addColumn({ type: 'date', id: 'Início' });
-        data.addColumn({ type: 'date', id: 'Fim' });
 
         <?php
             include_once('../conexao_ccr.php'); 
@@ -111,54 +97,45 @@
             $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
             $result = $conn->query($sql);          
 
-            $sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
-            $result_hora_final = $conn->query($sql_hora_final);          
-            $horaFim = mysqli_fetch_row($result_hora_final)[0];
+            //$sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
+            //$result_hora_final = $conn->query($sql_hora_final);          
+            //$horaFim = mysqli_fetch_row($result_hora_final)[0];
             
             //echo $horaFim;
 
             while($dados = mysqli_fetch_assoc($result)){
                 // Define a data para o evento
                 $dataColeta = new DateTime($msg_data);
-                //$dataColeta = $msg_data;
-                $horaInicio = new DateTime($dados['hora_coleta']);
+                //$horaInicio = new DateTime();
                 //$horaInicio = $dados['hora_coleta'];
+                //echo $horaInicio->format('H:i');
+                $horaInicio = new DateTime($dados['hora_coleta']);
+                //echo $horaInicio;
                 
                 // Adiciona 15 minutos para a hora de fim
                 $horaFim = clone $horaInicio;
                 $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
 
+                echo $horaFim;
+
                 // Garante que a hora de fim está depois da hora de início
                 if ($horaFim > $horaInicio) {
+                    echo 'ENTRREI';
                     // Cria um evento único concatenando pista e motivo
                     $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
                     #$cor = '#ADD8E6';
                     $cor = htmlspecialchars($dados['cor']);
+                    echo $evento;
                     ?>
-                    data.addRows([
+                    <!-- data.addRows([
                         ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
-                    ]);
+                    ]); -->
                     <?php  
                 }
             }
         ?>
 
-        var options = {
-            timeline: { groupByRowLabel: true },
-            height: 400,
-            //colors: ['#1b9e77', '#d95f02', '#7570b3']
-        };
 
-        var chart = new google.visualization.Timeline(document.getElementById('curve_chart'));
-        chart.draw(data, options);
-    }
-    
-    window.addEventListener('resize', drawChart);
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
