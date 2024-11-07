@@ -46,7 +46,7 @@
             <br>                
             <div class="alert alert-info text-center rounded-pill" role="alert">
                 <h2>
-                Análise do trecho da rodovia em São José dos Campos - SP
+                Análise da rodovia em São José dos Campos e Região
                 </h2>
             </div>
             
