@@ -97,45 +97,93 @@
             $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
             $result = $conn->query($sql);          
 
-            //$sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
-            //$result_hora_final = $conn->query($sql_hora_final);          
-            //$horaFim = mysqli_fetch_row($result_hora_final)[0];
-            
-            //echo $horaFim;
+            #$sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
+            #$result_hora_final = $conn->query($sql_hora_final);          
+            #$horaFim = mysqli_fetch_row($result_hora_final);
 
-            while($dados = mysqli_fetch_assoc($result)){
-                // Define a data para o evento
-                $dataColeta = new DateTime($msg_data);
-                //$horaInicio = new DateTime();
-                //$horaInicio = $dados['hora_coleta'];
-                //echo $horaInicio->format('H:i');
-                $horaInicio = new DateTime($dados['hora_coleta']);
-                //echo $horaInicio;
-                
-                // Adiciona 15 minutos para a hora de fim
-                $horaFim = clone $horaInicio;
-                $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
+            $i=0;
+            if($i==0){
+                while($dados = mysqli_fetch_assoc($result)){
+                    // Define a data para o evento
+                    
+                    #$dataColeta = $msg_data;
+                    $dataColeta = new DateTime($msg_data);
+                    
 
-                echo $horaFim;
+                    #$horaInicio = new DateTime($dados['hora_coleta']);
+                    $horaInicio = $dados['hora_coleta'];
+                    #$horaInicio = '00:00';
+                    $horaInicio = new DateTime($horaInicio);                    
+                    
+                    // Adiciona 15 minutos para a hora de fim
+                    $horaFim = clone $horaInicio;
+                    $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
 
-                // Garante que a hora de fim está depois da hora de início
-                if ($horaFim > $horaInicio) {
-                    echo 'ENTRREI';
-                    // Cria um evento único concatenando pista e motivo
-                    $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
-                    #$cor = '#ADD8E6';
-                    $cor = htmlspecialchars($dados['cor']);
-                    echo $evento;
-                    ?>
-                    <!-- data.addRows([
-                        ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
-                    ]); -->
-                    <?php  
+                    $horaLimite = '23:45';
+                    $horaLimite = new DateTime($horaLimite);                    
+    
+                    // Garante que a hora de fim está depois da hora de início
+                    if ($horaFim > $horaInicio) {
+                        if ($horaInicio != $horaLimite) {
+                            // Cria um evento único concatenando pista e motivo
+                            $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
+                            #$cor = '#ADD8E6';
+                            $cor = htmlspecialchars($dados['cor']);
+                            
+                            
+                            echo $evento . ' ' . $cor . ' ' .
+                            $dataColeta->format('Y') . '-' .
+                            ($dataColeta->format('m')-1) . '-' .
+                            $dataColeta->format('d') . '  ' .
+                            $horaInicio->format('H') . ':' .
+                            $horaInicio->format('i') . ' || ' .
+                            $dataColeta->format('Y') . '-' .
+                            ($dataColeta->format('m') - 1) . '-' .
+                            $dataColeta->format('d') . ' ' .
+                            $horaFim->format('H') . ':' .
+                            $horaFim->format('i');
+
+                            echo "<br>";
+                        }
+                    }
+                }
+            }else{
+                while($dados = mysqli_fetch_assoc($result)){
+                    // Define a data para o evento
+                    
+                    #$dataColeta = new DateTime($msg_data);
+                    $dataColeta = $msg_data;
+
+                    #$horaInicio = new DateTime($dados['hora_coleta']);
+                    $horaInicio = '00:00';
+                    
+                    // Adiciona 15 minutos para a hora de fim
+                    $horaFim = '23:45';
+                    //$horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
+                      
+                    // Garante que a hora de fim está depois da hora de início
+                    //if ($horaFim > $horaInicio) {
+                        // Cria um evento único concatenando pista e motivo
+                        $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
+                        #$cor = '#ADD8E6';
+                        $cor = htmlspecialchars($dados['cor']);
+
+                        ###
+                        echo "Evento: " . $evento . " | Cor: " . $cor . " | Hora de Coleta: " . $dados['hora_coleta'];
+                        echo "<br>";
+                   // }else{
+                        
+                   // }
                 }
             }
+                
+    
+
         ?>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
