@@ -42,7 +42,7 @@ hora = hora.strftime('%H:%M:%S')
 #Condicional criada para capturar dados dos momentos em que não há trânsito
 if(tamanho==1):
     #print(conteudo[0])
-    sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES ('128','162','Expressa','livre','fluxo_continuo','Todas','{data}','{hora}')"
+    sql = f"INSERT INTO classificados (km_ini, km_fim, pista, trafego, motivo, cidade, data_coleta, hora_coleta) VALUES ('9','338','Expressa','livre','fluxo_continuo','Todas','{data}','{hora}')"
     cursor = db_connection.cursor()
     cursor.execute(sql)
     cursor.close() 

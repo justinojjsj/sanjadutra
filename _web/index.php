@@ -151,7 +151,66 @@
                         </div>
                     </div>
                 </div> 
+            </div> 
+            
+            </br>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 ">
                 
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body ">                            
+                            <img class="card-img-top img-fluid" src="img/historico.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
+                        </div>
+                        <div class="card-footer  text-center" style="height: 9rem;">
+                            <h5 class="card-title">Gráfico de Fluxo por cidade</h5>
+                            <p class="card-text">Gráfico do fluxo de veículos por Cidade e Data.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModalFluxo">
+                                    Ver Gráfico
+                            </button>
+                            <a href="grafico_fluxo/fluxo_historico.php" class="btn btn-primary" target="_blank">
+                                Abrir em outra página
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <small>Última atualização: 
+                                <?php        
+                                    echo $hora_coleta;
+                                    echo ' de ';
+                                    echo $data_coleta;                     
+                                ?>                            
+                            </small>
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body ">                            
+                            <img class="card-img-top img-fluid" src="img/temporal2.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
+                        </div>
+                        <div class="card-footer  text-center" style="height: 9rem;">
+                            <h5 class="card-title">Gráfico Temporal</h5>
+                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModal">
+                                    Ver Gráfico Temporal
+                            </button>
+                            <a href="grafico_fluxo/temporal.php" class="btn btn-primary" target="_blank">
+                                Abrir em outra página
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <small>Última atualização: 
+                                <?php        
+                                    echo $hora_coleta;
+                                    echo ' de ';
+                                    echo $data_coleta;                     
+                                ?>                            
+                            </small>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
                 
 
         <!-- Modal -->
@@ -185,6 +244,25 @@
                     </div>
                     <div class="modal-body">
                         <iframe src="grafico_fluxo/tempo_real.php" style="width: 100%; height: 800px; border: none;"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="graficoModalFluxo" tabindex="-1" role="dialog" aria-labelledby="graficoModalFluxo" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="graficoModalLabel">Gráfico de Fluxo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="grafico_fluxo/fluxo_historico.php" style="width: 100%; height: 800px; border: none;"></iframe>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

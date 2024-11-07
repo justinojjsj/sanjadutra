@@ -43,7 +43,7 @@ try{
                     include_once('../conexao_ccr.php'); 
                     global $hoje;
                     $hoje = date("Y-m-d");
-                    $hoje = '2024-10-15';
+                    #$hoje = '2024-10-15';
                     #$sql = "SELECT *, '$hoje' AS data_especifica FROM classificados WHERE cidade LIKE 'São José%'";
                     $sql = "SELECT * FROM classificados WHERE data_coleta = '$hoje' AND cidade LIKE 'São José%'";
                     $result = $conn->query($sql);

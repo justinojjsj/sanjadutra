@@ -1,49 +1,49 @@
 <?php
-include_once('../conexao_ccr.php'); 
+    include_once('../conexao_ccr.php'); 
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
-
-// Inicializa variável para armazenar a mensagem
-$msg_data = "";
-$msg_cidade = "";
-
-// Consulta ao banco de dados
-$sql_consulta_data = "SELECT DISTINCT data_coleta FROM classificados_temporais2;";
-$resultado_consulta_data = $conn->query($sql_consulta_data);
-
-$sql_consulta_cidade = "SELECT DISTINCT cidade FROM classificados_temporais2";
-$resultado_consulta_cidade = $conn->query($sql_consulta_cidade);
-
-// Verifica se o formulário foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['data']) && isset($_POST['cidade'])) {
-        $dataSelecionada = $_POST['data'];
-        $cidadeSelecionada = $_POST['cidade'];
-        $msg_data = htmlspecialchars($dataSelecionada);
-        $msg_cidade = htmlspecialchars($cidadeSelecionada);
+    // Verifica a conexão
+    if ($conn->connect_error) {
+        die("Falha na conexão: " . $conn->connect_error);
     }
-}
 
-// Consulta o banco com as informações pretendidas
-$sql_consulta_data_selecionada = "SELECT * FROM classificados_temporais2 WHERE data_coleta='$msg_data' ORDER BY hora_coleta ASC;";
-$resultado_consulta_data_selecionada = $conn->query($sql_consulta_data_selecionada);
+    // Inicializa variável para armazenar a mensagem
+    $msg_data = "";
+    $msg_cidade = "";
 
-$hora_capturada = [];
-$trafego = [];
-$contador = 0;
+    // Consulta ao banco de dados
+    $sql_consulta_data = "SELECT DISTINCT data_coleta FROM classificados_temporais;";
+    $resultado_consulta_data = $conn->query($sql_consulta_data);
 
-if ($resultado_consulta_data_selecionada->num_rows > 0) {
-    while ($linha = $resultado_consulta_data_selecionada->fetch_assoc()) {            
-        $hora_capturada[$contador] = $linha['hora_coleta'];
-        $trafego[$contador] = $linha['trafego'];
-        $contador++;          
+    $sql_consulta_cidade = "SELECT DISTINCT cidade FROM classificados_temporais";
+    $resultado_consulta_cidade = $conn->query($sql_consulta_cidade);
+
+    // Verifica se o formulário foi enviado
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['data']) && isset($_POST['cidade'])) {
+            $dataSelecionada = $_POST['data'];
+            $cidadeSelecionada = $_POST['cidade'];
+            $msg_data = htmlspecialchars($dataSelecionada);
+            $msg_cidade = htmlspecialchars($cidadeSelecionada);
+        }
     }
-} else {
-    echo "Nenhum resultado encontrado.";
-}
+
+    // Consulta o banco com as informações pretendidas
+    $sql_consulta_data_selecionada = "SELECT * FROM classificados_temporais WHERE data_coleta='$msg_data' AND cidade='$msg_cidade' ORDER BY hora_coleta ASC;";
+    $resultado_consulta_data_selecionada = $conn->query($sql_consulta_data_selecionada);
+
+    $hora_capturada = [];
+    $trafego = [];
+    $contador = 0;
+
+    if ($resultado_consulta_data_selecionada->num_rows > 0) {
+        while ($linha = $resultado_consulta_data_selecionada->fetch_assoc()) {            
+            $hora_capturada[$contador] = $linha['hora_coleta'];
+            $trafego[$contador] = $linha['trafego'];
+            $contador++;          
+        }
+    } else {
+        echo "Nenhum resultado encontrado.";
+    }
 
 ?>
 
@@ -52,7 +52,7 @@ if ($resultado_consulta_data_selecionada->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>SanjaDutra Tempo Real</title>
+    <title>SanjaDutra Fluxo Histórico</title>
     <style>
         #curve_chart {
             width: 100%;
@@ -81,7 +81,7 @@ if ($resultado_consulta_data_selecionada->num_rows > 0) {
             var options = {
                 width: '100%',
                 height: '100%',
-                title: 'Cidade: São José dos Campos - Data: <?php echo $msg_data; ?>',
+                title: 'Cidade: <?php echo $msg_cidade; ?> - Data: <?php echo $msg_data; ?>',
                 curveType: '',
                 legend: { position: 'bottom' },
                 vAxis: {
@@ -104,6 +104,7 @@ if ($resultado_consulta_data_selecionada->num_rows > 0) {
         window.addEventListener('resize', drawChart);
     </script>
 </head>
+
 <body>
     <div class="container text-center mt-5">
         <h1 class="text-primary">HISTÓRICO DE TRÁFEGO</h1>

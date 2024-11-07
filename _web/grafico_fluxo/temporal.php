@@ -47,7 +47,8 @@
     $sql = "SELECT DISTINCT data_coleta FROM classificados_temporais;";
     $result = $conn->query($sql);
     
-    $sql_cidade = "SELECT DISTINCT cidade FROM classificados_temporais WHERE cidade LIKE 'São José%'";
+    #$sql_cidade = "SELECT DISTINCT cidade FROM classificados_temporais WHERE cidade LIKE 'São José%'";
+    $sql_cidade = "SELECT DISTINCT cidade FROM classificados_temporais";
     $result_cidade = $conn->query($sql_cidade);
 ?>
 
@@ -99,7 +100,7 @@
 
     function drawChart() {
         var data = new google.visualization.DataTable();
-        data.addColumn({ type: 'string', id: 'Evento' });
+        data.addColumn({ type: 'string', id: 'Pista' });
         data.addColumn({ type: 'string', id: 'Motivo' });
         data.addColumn({ type: 'string', id: 'style', role: 'style' });
         data.addColumn({ type: 'date', id: 'Início' });
@@ -107,36 +108,79 @@
 
         <?php
             include_once('../conexao_ccr.php'); 
-            $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data'";
-            #$sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
+            #$sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data'";
+            $sql = "SELECT * FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta ASC";
             $result = $conn->query($sql);          
 
             #$sql_hora_final = "SELECT hora_coleta FROM classificados_temporais WHERE cidade='$msg_cidade' AND data_coleta='$msg_data' ORDER BY hora_coleta DESC";
             #$result_hora_final = $conn->query($sql_hora_final);          
             #$horaFim = mysqli_fetch_row($result_hora_final);
 
-            while($dados = mysqli_fetch_assoc($result)){
-                // Define a data para o evento
-                $dataColeta = new DateTime($msg_data);
-                $horaInicio = new DateTime($dados['hora_coleta']);
-                
-                // Adiciona 15 minutos para a hora de fim
-                $horaFim = clone $horaInicio;
-                $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
+            $i=0;
+            if($i==1){
+                while($dados = mysqli_fetch_assoc($result)){
+                    // Define a data para o evento
+                    
+                    $dataColeta = new DateTime($msg_data);
+                    $horaInicio = new DateTime($dados['hora_coleta']);
+                    
+                    // Adiciona 15 minutos para a hora de fim
+                    $horaFim = clone $horaInicio;
+                    $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
+                      
+                    // Garante que a hora de fim está depois da hora de início
+                    if ($horaFim > $horaInicio) {
+                        // Cria um evento único concatenando pista e motivo
+                        $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
+                        #$cor = '#ADD8E6';
+                        $cor = htmlspecialchars($dados['cor']);
+                        ?>
+                        data.addRows([
+                            ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
+                        ]);
+                        <?php  
+                    }else{
+                        
+                    }
+                }
+            }else{
+                while($dados = mysqli_fetch_assoc($result)){
+                    // Define a data para o evento
+                    
+                    #$dataColeta = $msg_data;
+                    $dataColeta = new DateTime($msg_data);
+                    
 
-                // Garante que a hora de fim está depois da hora de início
-                if ($horaFim > $horaInicio) {
-                    // Cria um evento único concatenando pista e motivo
-                    $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
-                    #$cor = '#ADD8E6';
-                    $cor = htmlspecialchars($dados['cor']);
-                    ?>
-                    data.addRows([
-                        ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
-                    ]);
-                    <?php  
+                    #$horaInicio = new DateTime($dados['hora_coleta']);
+                    $horaInicio = $dados['hora_coleta'];
+                    #$horaInicio = '00:00';
+                    $horaInicio = new DateTime($horaInicio);                    
+                    
+                    // Adiciona 15 minutos para a hora de fim
+                    $horaFim = clone $horaInicio;
+                    $horaFim->add(new DateInterval('PT15M')); // Adiciona 15 minutos
+
+                    $horaLimite = '23:45';
+                    $horaLimite = new DateTime($horaLimite);                  
+    
+                    // Garante que a hora de fim está depois da hora de início
+                    if ($horaFim > $horaInicio) {
+                        if ($horaInicio != $horaLimite) {
+                            // Cria um evento único concatenando pista e motivo
+                            $evento = htmlspecialchars($dados['pista']) . ' - ' . htmlspecialchars($dados['motivo']);
+                            #$cor = '#ADD8E6';
+                            $cor = htmlspecialchars($dados['cor']);
+                            ?>
+                            data.addRows([
+                                ['<?php echo $evento; ?>', '','<?php echo $cor; ?>', new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaInicio->format('H'); ?>, <?php echo $horaInicio->format('i'); ?>), new Date(<?php echo $dataColeta->format('Y'); ?>, <?php echo $dataColeta->format('m') - 1; ?>, <?php echo $dataColeta->format('d'); ?>, <?php echo $horaFim->format('H'); ?>, <?php echo $horaFim->format('i'); ?>)]
+                            ]);
+                            <?php  
+                        }
+                    }
+                    
                 }
             }
+
         ?>
 
         var options = {

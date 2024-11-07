@@ -9,15 +9,31 @@ SET cidade = 'São Paulo'
 WHERE cidade LIKE '%São Paulo%';
 
 UPDATE classificados
-SET cidade = 'Guarulhos'
-WHERE cidade LIKE '%Guarulhos%';
-
-UPDATE classificados
 SET cidade = 'Santa Branca'
 WHERE cidade = 'Santa';
 
 DELETE FROM classificados
 WHERE cidade = ' ';
+
+UPDATE classificados
+SET cidade = 'Pindamonhangaba'
+WHERE cidade LIKE '%Pinda%';
+
+UPDATE classificados
+SET cidade = 'Guarulhos'
+WHERE cidade LIKE '%rulhos%';
+
+UPDATE classificados
+SET cidade = 'Volta Redonda'
+WHERE cidade = 'Volta';
+
+UPDATE classificados
+SET cidade = 'Cachoeira Paulista'
+WHERE cidade = 'Cachoeira';
+
+UPDATE classificados
+SET cidade = 'São Paulo'
+WHERE cidade = 'Sãi';
 
 SELECT DISTINCT cidade FROM classificados;
 
