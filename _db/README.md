@@ -1,6 +1,11 @@
 # SANJADUTRA _DB
 
 ## Banco de dados db_ccr
+- Banco db_ccr_07112024.sql é um banco com dados capturados 24horas, do dia 30/10/2024 à 06/11/2024;
+- Esses dados foras tratados diretamente no banco através dos códigos do arquivo 'limpeza_bds';
+- Após a limpeza foi usado esse banco para fazer os últimos gráficos, com os dados mais purificados.
+
+Obs.: Os bancos anteriores contém diversos outros dados, mas que contém alguns detalhes faltando, pois o sistema ainda não estava totalmente pronto e capturando corretamente.
 
 ### Tabela dados(id, titulo, texto, data_coleta, hora_coleta)
 - Usada para armazenar as informações de tráfego de maneira crua, enviada pelo python.

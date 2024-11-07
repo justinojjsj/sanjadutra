@@ -24,22 +24,20 @@
 ### css
 - Arquivos de formatação das páginas
 
-### grafico_fluxo `DESENVOLVIMENTO FINALIZADO`
+### grafico_fluxo
 
 > Gráficos de fluxo de veículos
 
-1. Gráfico de tempo atual (tempo_real.php): 
-
-- Rotular valores do eixo y; `OK`
-
-- Colocar último horário nas horas; `OK`
-
+1. Gráfico de tempo real (tempo_real.php):
+    Dedicado a apresentar o fluxo de veículos em tempo real (atualização a cada 15 minutos).
 
 2. Gráfico temporal (temporal.php):
+    Ao selecionar cidade e data apresenta dados da pista e situação do trânsito.
 
-- Filtro por checkbox: cidades e datas, com atualização automática do gráfico. `OK`
+3. Gráfico de Histórico de fluxo (fluxo_historico.php):
+    Ao selecionar cidade e data apresenta o fluxo de veículo daquele dia.
 
-### grafico_acidentes `EM DESENVOLVIMENTO`
+### grafico_acidentes
 
 > Gráficos de quantitativo de acidentes por cidade 
 
