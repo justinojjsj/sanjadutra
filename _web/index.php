@@ -187,15 +187,15 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body ">                            
-                            <img class="card-img-top img-fluid" src="img/temporal2.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
+                            <img class="card-img-top img-fluid" src="img/acidentes.png" alt="Card image cap" style="object-fit: cover; width: 100%; height: auto;">
                         </div>
                         <div class="card-footer  text-center" style="height: 9rem;">
-                            <h5 class="card-title">Gráfico Temporal</h5>
-                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModal">
-                                    Ver Gráfico Temporal
+                            <h5 class="card-title">Gráfico de Acidentes</h5>
+                            <p class="card-text">Número de acidentes por cidade.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModalAcidentes">
+                                    Ver Acidentes
                             </button>
-                            <a href="grafico_fluxo/temporal.php" class="btn btn-primary" target="_blank">
+                            <a href="grafico_fluxo/acidentes.php" class="btn btn-primary" target="_blank">
                                 Abrir em outra página
                             </a>
                         </div>
@@ -209,7 +209,7 @@
                             </small>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div> 
                 
 
@@ -263,6 +263,25 @@
                     </div>
                     <div class="modal-body">
                         <iframe src="grafico_fluxo/fluxo_historico.php" style="width: 100%; height: 800px; border: none;"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="graficoModalAcidentes" tabindex="-1" role="dialog" aria-labelledby="graficoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="graficoModalLabel">Gráfico de Acidentes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="grafico_fluxo/acidentes.php" style="width: 100%; height: 800px; border: none;"></iframe>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
