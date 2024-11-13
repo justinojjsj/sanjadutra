@@ -1,24 +1,10 @@
 # SANJADUTRA
 
-## DESCRIÇÃO DO DESENVOLVIMENTO
+## JUSTIFICATIVA DO SISTEMA
 
-1. Capturar dados de tráfego da rodovia Presidente Dutra sentido RIO-SP via script nos trechos:
+A partir da descontinuidade da rádio CCR RIOSP, verificou-se uma grande dificuldade nos usuários desta rodovia em saber informações de tráfego como horário de maior fluxo de veículos, horários de tráfego intenso e outras informações. Essas informações são importantes pois com elas o usuário da rodovia consegue planejar melhor sua viagem.
 
-    Início: Km 128 (Caçapava)
-    Fim: km 162 (Jacareí)
-
-2. Classificar dados corretamente
-
-    Local
-    Início
-    Fim
-    Data
-    Hora
-    Condição de tráfego
-
-3. Manipular dados classificados gerando gráficos de horários de fluxos
-
-    -Exibir em gráficos
+Os dados de tráfego são capturados por câmeras e enviados para a plataforma da CCR. O nosso sistema na primeira fase captura esses dados e armazena. Na segunda fase trata os dados e os classifica. Na terceira fase analisa esses dados e plota em gráfico os horários de maior tráfego por período obtendo-se informações como horários de maior fluxo, acidentes etc. Esses gráficos são apresentados em uma plataforma web para verificação do usuário.
 
 ## COMO CONFIGURAR OS SISTEMAS
 
@@ -70,3 +56,33 @@ Para funcionar os sistemas é necessário:
     ```
     chmod u+x /app/exec.sh
     ```
+
+## DIRETÓRIOS
+> Cada diretório possui seu próprio README.md
+
+### _app
+- Scripts python e shell
+
+### _db
+- Backups do banco de dados denominado db_ccr_data.sql
+
+### _web
+- Arquivos referentes ao conteúdo web, back e frontend.
+
+## ARQUIVOS DOCKER 
+- É necessário que esses arquivos fiquem na raiz do sistema, pois se estiverem dentro de diretórios não funciona
+
+### docker-compose.yaml
+- Arquivo de configuração dos containers
+
+### docker-entrypoint.sh
+- Utilizado pelo dockerfile-python-ccr para executar alguns comandos após a instalação do container
+
+### dockerfile-db
+- Executa comandos na instalação do container de banco de dados
+
+### dockerfile-php-apache
+- Executa comandos na instalação do container de php-apache
+
+### dockerfile-python-ccr
+- Executa comandos na instalação do container python

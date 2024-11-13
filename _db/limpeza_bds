@@ -1,0 +1,83 @@
+# CIDADES
+
+UPDATE classificados
+SET cidade = 'São José dos Campos'
+WHERE cidade LIKE '%São José%';
+
+UPDATE classificados
+SET cidade = 'São Paulo'
+WHERE cidade LIKE '%São Paulo%';
+
+UPDATE classificados
+SET cidade = 'Santa Branca'
+WHERE cidade = 'Santa';
+
+DELETE FROM classificados
+WHERE cidade = ' ';
+
+UPDATE classificados
+SET cidade = 'Pindamonhangaba'
+WHERE cidade LIKE '%Pinda%';
+
+UPDATE classificados
+SET cidade = 'Guarulhos'
+WHERE cidade LIKE '%rulhos%';
+
+UPDATE classificados
+SET cidade = 'Volta Redonda'
+WHERE cidade = 'Volta';
+
+UPDATE classificados
+SET cidade = 'Cachoeira Paulista'
+WHERE cidade = 'Cachoeira';
+
+UPDATE classificados
+SET cidade = 'São Paulo'
+WHERE cidade = 'Sãi';
+
+SELECT DISTINCT cidade FROM classificados;
+
+
+# MOTIVO
+
+UPDATE classificados
+SET motivo = 'obra'
+WHERE motivo LIKE '%obra%';
+
+UPDATE classificados
+SET motivo = 'veiculo_pane'
+WHERE motivo LIKE '%veículo%';
+
+UPDATE classificados
+SET motivo = 'pista_liberada'
+WHERE motivo LIKE '%liberada%';
+
+UPDATE classificados
+SET motivo = 'trafego_meia_pista'
+WHERE motivo LIKE '%fluindo%';
+
+UPDATE classificados
+SET motivo = 'trafego_interrompido_carga_excedente'
+WHERE motivo LIKE '%interrompido%';
+
+UPDATE classificados
+SET motivo = 'trafego_interrompido_carga_excedente'
+WHERE motivo LIKE '%interrompida%';
+
+UPDATE classificados
+SET motivo = 'detonacao'
+WHERE motivo LIKE '%detonacao%';
+
+UPDATE classificados
+SET motivo = 'foco_incendio'
+WHERE motivo LIKE '%incêndio%';
+
+UPDATE classificados
+SET motivo = 'outro'
+WHERE motivo LIKE '%Obs%';
+
+SELECT DISTINCT motivo FROM classificados;
+
+SELECT motivo, COUNT(*) AS quantidade
+FROM classificados
+GROUP BY motivo;

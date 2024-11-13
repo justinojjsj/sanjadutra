@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
   php-apache:
@@ -9,7 +9,6 @@ services:
     container_name: sanjadutra_php_apache
     volumes:
       - ./_web:/var/www/html
-      - ./sites-available/:/etc/apache2/sites-available/
     ports:
       - 88:80
     networks:
@@ -45,7 +44,7 @@ services:
         ipv4_address: 170.17.0.3
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_DATABASE: db_testes
+      MYSQL_DATABASE: db_ccr
       MYSQL_USER: aluno
       MYSQL_PASSWORD: my-password
       TZ: "America/Sao_Paulo"
@@ -75,7 +74,7 @@ services:
     container_name: sanjadutra_python_ccr
     restart: always
     volumes:
-      - ./_app-ccr:/app 
+      - ./_app:/app 
     tty: true
     networks:
       rede:
