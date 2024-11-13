@@ -19,7 +19,7 @@
             <div class="collapse" id="navbarToggleExternalContent">
                 <div class="bg-dark p-4">
                     <h5 class="text-white h4">SanjaDutra</h5>
-                    <span class="text-muted">Sistema de Micro Serviços de Análise de Dados do km 128 a 162 da rodovia Presidente Dutra trecho de São José dos Campos - Projeto Integrador IV - UNIVESP</span>
+                    <span class="text-muted">Sistema de Micro Serviços de Análise de Dados do km 9 a 338 da Rodovia Presidente Dutra - Projeto Integrador IV - UNIVESP</span>
                 </div>                
             </div>
             
@@ -132,7 +132,7 @@
                         </div>
                         <div class="card-footer  text-center" style="height: 9rem;">
                             <h5 class="card-title">Gráfico Temporal</h5>
-                            <p class="card-text">Horários com os maiores fluxos de veículos em São José dos Campos.</p>
+                            <p class="card-text">Horários com informações da rodovia por Cidade e Data.</p>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoModal">
                                     Ver Gráfico Temporal
                             </button>

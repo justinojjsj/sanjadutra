@@ -108,7 +108,7 @@
 <body>
     <div class="container text-center mt-5">
         <h1 class="text-primary">HISTÓRICO DE TRÁFEGO</h1>
-        <h2 class="text-muted">CIDADES</h2>
+        <h2 class="text-muted"><?php echo $msg_cidade; ?></h2>
     </div>    
 
     <div class="container mt-5">

@@ -16,11 +16,6 @@
 </head>
 <body>
 
-<div class="container text-center mt-5">
-    <h1 class="text-primary">GRÁFICO DE TRÁFEGO TEMPORAL</h1>
-    <h2 class="text-muted">SÃO JOSÉ DOS CAMPOS</h2>
-</div>    
-
 <?php
     include_once('../conexao_ccr.php'); 
 
@@ -51,6 +46,11 @@
     $sql_cidade = "SELECT DISTINCT cidade FROM classificados_temporais";
     $result_cidade = $conn->query($sql_cidade);
 ?>
+
+<div class="container text-center mt-5">
+    <h1 class="text-primary">GRÁFICO DE TRÁFEGO TEMPORAL</h1>
+    <h2 class="text-muted"><?php echo $msg_cidade; ?></h2>
+</div>  
 
 <div class="container mt-5">
     <h2 class="text-center">Escolha uma Data e uma Cidade</h2>
